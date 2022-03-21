@@ -1,3 +1,15 @@
 <resources>
     <string name="app_name">Patinfly</string>
+    <string name="patinfly">Patinfly</string>
+    <string name="log_in">Log In</string>
+    <string name="sign_up">Sign Up</string>
+    <string name="sign_up_underscore"><u>Sign Up</u></string>
+    <string name="password">password</string>
+    <string name="username">Username</string>
+    <string name="repeat_password">Repeat Password</string>
+    <string name="surname">Surname</string>
+    <string name="name">Name</string>
+    <string name="e_mail">e-mail</string>
+    <string name="dni">DNI</string>
+    <string name="phone_number">phone number</string>
 </resources>
