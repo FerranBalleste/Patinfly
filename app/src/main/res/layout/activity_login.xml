@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".LoginActivity">
 
-    <TextView
-        android:id="@+id/login_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/patinfly"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/login_linear_layout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
         android:id="@+id/login_linear_layout"
         android:layout_width="wrap_content"
@@ -36,7 +25,8 @@
             android:hint="@string/username"
             android:inputType="textPersonName"
             android:textColorHint="#78909C"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:autofillHints="username" />
 
         <EditText
             android:id="@+id/login_password"
@@ -47,7 +37,8 @@
             android:hint="@string/password"
             android:inputType="textPassword"
             android:textColorHint="#78909C"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:autofillHints="password" />
 
         <Button
             android:id="@+id/login_button"
@@ -55,11 +46,12 @@
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
             android:text="@string/log_in"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            tools:ignore="TextContrastCheck" />
     </LinearLayout>
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/login_signupbutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@android:color/transparent"
@@ -70,4 +62,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_linear_layout" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="380dp"
+        android:layout_height="230dp"
+        android:contentDescription="@string/pantifly_icon_content_description"
+        app:layout_constraintBottom_toTopOf="@+id/login_linear_layout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_patinflyicon" />
 </androidx.constraintlayout.widget.ConstraintLayout>

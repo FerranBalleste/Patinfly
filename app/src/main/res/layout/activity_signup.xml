@@ -6,17 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".SignupActivity">
 
-    <TextView
-        android:id="@+id/signup_title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/patinfly"
-        android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
     <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="wrap_content"
@@ -36,7 +25,8 @@
             android:inputType="textPersonName"
             android:textColorHint="#757575"
             android:textSize="24sp"
-            android:layout_margin="8sp"/>
+            android:layout_margin="8sp"
+            android:autofillHints="name" />
 
         <EditText
             android:id="@+id/signup_surname"
@@ -47,7 +37,8 @@
             android:inputType="textPersonName"
             android:textColorHint="#757575"
             android:textSize="24sp"
-            android:layout_margin="8sp"/>
+            android:layout_margin="8sp"
+            android:autofillHints="surname" />
 
         <EditText
             android:id="@+id/signup_email"
@@ -58,7 +49,8 @@
             android:inputType="textEmailAddress"
             android:textColorHint="#757575"
             android:textSize="24sp"
-            android:layout_margin="8sp"/>
+            android:layout_margin="8sp"
+            android:autofillHints="emailAddress" />
 
         <EditText
             android:id="@+id/signup_phone"
@@ -69,7 +61,8 @@
             android:inputType="phone"
             android:textColorHint="#757575"
             android:textSize="24sp"
-            android:layout_margin="8sp"/>
+            android:layout_margin="8sp"
+            android:autofillHints="phone" />
 
         <EditText
             android:id="@+id/signup_dni"
@@ -80,7 +73,8 @@
             android:inputType="textPersonName"
             android:textColorHint="#757575"
             android:textSize="24sp"
-            android:layout_margin="8sp"/>
+            android:layout_margin="8sp"
+            android:autofillHints="dni" />
 
         <EditText
             android:id="@+id/signup_password1"
@@ -91,7 +85,8 @@
             android:inputType="textPersonName"
             android:textColorHint="#757575"
             android:textSize="24sp"
-            android:layout_margin="8sp"/>
+            android:layout_margin="8sp"
+            android:autofillHints="password" />
 
         <EditText
             android:id="@+id/signup_password2"
@@ -102,7 +97,8 @@
             android:inputType="textPersonName"
             android:textColorHint="#757575"
             android:textSize="24sp"
-            android:layout_margin="8sp"/>
+            android:layout_margin="8sp"
+            android:autofillHints="password" />
     </LinearLayout>
 
     <Button
@@ -114,5 +110,17 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        tools:ignore="TextContrastCheck" />
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="380dp"
+        android:layout_height="121dp"
+        android:contentDescription="@string/pantifly_icon_content_description"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_patinflyicon2" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,4 +12,5 @@
     <string name="e_mail">e-mail</string>
     <string name="dni">DNI</string>
     <string name="phone_number">phone number</string>
+    <string name="pantifly_icon_content_description">Pantifly icon</string>
 </resources>
