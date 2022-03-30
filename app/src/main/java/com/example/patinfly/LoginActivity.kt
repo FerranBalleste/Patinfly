@@ -3,8 +3,6 @@ package com.example.patinfly
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.widget.Button
 
 class LoginActivity : AppCompatActivity() {
@@ -16,6 +14,12 @@ class LoginActivity : AppCompatActivity() {
         val signupButton = findViewById<Button>(R.id.login_signupbutton)
         signupButton.setOnClickListener{
             val intent = Intent(this, SignupActivity::class.java)
+            startActivity(intent)
+        }
+
+        val loginButton = findViewById<Button>(R.id.login_button)
+        loginButton.setOnClickListener{
+            val intent = Intent(this, NavigationDrawerActivity::class.java)
             startActivity(intent)
         }
     }

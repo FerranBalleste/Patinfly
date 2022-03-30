@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.patinfly.SettingsFragment"
+        android:label="SettingsFragment"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.patinfly.HomeFragment"
+        android:label="fragment_home2"
+        tools:layout="@layout/fragment_home" />
+    <fragment
+        android:id="@+id/historyFragment"
+        android:name="com.example.patinfly.HistoryFragment"
+        android:label="fragment_history2"
+        tools:layout="@layout/fragment_history" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.patinfly.ProfileFragment"
+        android:label="fragment_profile2"
+        tools:layout="@layout/fragment_profile" />
+</navigation>
