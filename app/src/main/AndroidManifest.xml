@@ -10,6 +10,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Patinfly">
         <activity
+            android:name=".HelpBottomNavigation"
+            android:exported="false"
+            android:label="@string/title_activity_help_bottom_navigation" />
+        <activity
             android:name=".NavigationDrawerActivity"
             android:exported="false"
             android:label="@string/title_activity_drawer"

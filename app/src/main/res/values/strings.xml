@@ -44,5 +44,26 @@
     </string>
     <string name="attachment_summary_off">Only download attachments when manually requested</string>
     <string name="todo">TODO</string>
+    <string name="title_activity_help_bottom_navigation">HelpBottomNavigation</string>
+    <string name="title_home">Home</string>
+
+    <!-- Help -->
+    <string name="help">Help</string>
+    <string name="help_description1">To rent a scooter tap</string>
+    <string name="leftleft"><![CDATA[<<]]></string>
+    <string name="left"><![CDATA[<]]></string>
+    <string name="right"><![CDATA[>]]></string>
+    <string name="rightright"><![CDATA[>>]]></string>
+    <string name="scooter_id">Scooter id:</string>
+    <string name="battery">Battery:</string>
+    <string name="rent">Rent</string>
+    <string name="distance_traveled">Distance Traveled:</string>
+    <string name="last_mantenaince">Last Mantenaince:</string>
+    <string name="location">Location:</string>
+    <string name="_66_km">66 km</string>
+    <string name="_05_08_2021">05-08-2021</string>
+    <string name="_41_1189_n">41.1189º N</string>
+    <string name="_1_2445_e">1.2445º E</string>
+    <string name="_0001">0001</string>
 
 </resources>
