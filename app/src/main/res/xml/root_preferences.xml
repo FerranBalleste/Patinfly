@@ -48,6 +48,12 @@
             app:title="Send feedback"
             app:summary="Report technical issues or suggest new features"
             />
+
+        <Preference
+            app:key="version"
+            app:title="Build version"
+            app:summary="1.1.0"
+            />
     </PreferenceCategory>
 
 </PreferenceScreen>
