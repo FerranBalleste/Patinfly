@@ -9,4 +9,15 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+
+    <string-array name="languages">
+        <item>English</item>
+        <item>Spanish</item>
+    </string-array>
+
+    <string-array name="theme">
+        <item>Light</item>
+        <item>Dark</item>
+    </string-array>
+
 </resources>

@@ -5,7 +5,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TableLayout
 import com.example.patinfly.R
+import com.google.android.material.card.MaterialCardView
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -34,8 +36,16 @@ class HomeFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false)
+        val view = inflater.inflate(R.layout.fragment_home, container, false)
+        view.findViewById<MaterialCardView>(R.id.home_card1).setOnClickListener {
+            val table = view.findViewById<TableLayout>(R.id.home_hidable_table)
+            if(table.getVisibility() == View.VISIBLE){
+                table.setVisibility(View.GONE)
+            }else{
+                table.setVisibility(View.VISIBLE)
+            }
+        }
+        return view
     }
 
     companion object {
