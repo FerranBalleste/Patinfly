@@ -21,24 +21,24 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
+            android:autofillHints="username"
             android:ems="10"
             android:hint="@string/username"
             android:inputType="textPersonName"
-            android:textColorHint="#78909C"
-            android:textSize="24sp"
-            android:autofillHints="username" />
+            android:textColorHint="@color/alt_text"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/login_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
+            android:autofillHints="password"
             android:ems="10"
             android:hint="@string/password"
             android:inputType="textPassword"
-            android:textColorHint="#78909C"
-            android:textSize="24sp"
-            android:autofillHints="password" />
+            android:textColorHint="@color/alt_text"
+            android:textSize="24sp" />
 
         <Button
             android:id="@+id/login_button"

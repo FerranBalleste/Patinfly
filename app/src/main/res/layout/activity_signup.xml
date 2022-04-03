@@ -20,85 +20,85 @@
             android:id="@+id/signup_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8sp"
+            android:autofillHints="name"
             android:ems="10"
             android:hint="@string/name"
             android:inputType="textPersonName"
-            android:textColorHint="#757575"
-            android:textSize="24sp"
-            android:layout_margin="8sp"
-            android:autofillHints="name" />
+            android:textColorHint="@color/alt_text"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/signup_surname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8sp"
+            android:autofillHints="surname"
             android:ems="10"
             android:hint="@string/surname"
             android:inputType="textPersonName"
-            android:textColorHint="#757575"
-            android:textSize="24sp"
-            android:layout_margin="8sp"
-            android:autofillHints="surname" />
+            android:textColorHint="@color/alt_text"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/signup_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8sp"
+            android:autofillHints="emailAddress"
             android:ems="10"
             android:hint="@string/e_mail"
             android:inputType="textEmailAddress"
-            android:textColorHint="#757575"
-            android:textSize="24sp"
-            android:layout_margin="8sp"
-            android:autofillHints="emailAddress" />
+            android:textColorHint="@color/alt_text"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/signup_phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8sp"
+            android:autofillHints="phone"
             android:ems="10"
             android:hint="@string/phone_number"
             android:inputType="phone"
-            android:textColorHint="#757575"
-            android:textSize="24sp"
-            android:layout_margin="8sp"
-            android:autofillHints="phone" />
+            android:textColorHint="@color/alt_text"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/signup_dni"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8sp"
+            android:autofillHints="dni"
             android:ems="10"
             android:hint="@string/dni"
             android:inputType="textPersonName"
-            android:textColorHint="#757575"
-            android:textSize="24sp"
-            android:layout_margin="8sp"
-            android:autofillHints="dni" />
+            android:textColorHint="@color/alt_text"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/signup_password1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8sp"
+            android:autofillHints="password"
             android:ems="10"
             android:hint="@string/password"
             android:inputType="textPersonName"
-            android:textColorHint="#757575"
-            android:textSize="24sp"
-            android:layout_margin="8sp"
-            android:autofillHints="password" />
+            android:textColorHint="@color/alt_text"
+            android:textSize="24sp" />
 
         <EditText
             android:id="@+id/signup_password2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_margin="8sp"
+            android:autofillHints="password"
             android:ems="10"
             android:hint="@string/repeat_password"
             android:inputType="textPersonName"
-            android:textColorHint="#757575"
-            android:textSize="24sp"
-            android:layout_margin="8sp"
-            android:autofillHints="password" />
+            android:textColorHint="@color/alt_text"
+            android:textSize="24sp" />
     </LinearLayout>
 
     <Button
