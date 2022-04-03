@@ -3,14 +3,6 @@
     <PreferenceCategory app:title="Personalization">
 
         <ListPreference
-            app:defaultValue="English"
-            app:entries="@array/languages"
-            app:entryValues="@array/languages"
-            app:key="language"
-            app:title="Application language"
-            app:useSimpleSummaryProvider="true" />
-
-        <ListPreference
             app:defaultValue="Default"
             app:entries="@array/theme"
             app:entryValues="@array/theme"
