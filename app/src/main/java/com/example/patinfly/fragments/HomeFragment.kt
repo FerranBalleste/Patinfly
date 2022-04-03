@@ -56,6 +56,7 @@ class HomeFragment : Fragment() {
             parentFragmentManager.commit {
                 replace<RentFragment>(R.id.nav_host_fragment_content_drawer)
                 setReorderingAllowed(true)
+                addToBackStack("home")
             }
         }
 

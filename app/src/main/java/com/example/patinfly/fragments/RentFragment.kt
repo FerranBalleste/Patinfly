@@ -5,6 +5,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import com.example.patinfly.R
 
 // TODO: Rename parameter arguments, choose names that match
@@ -35,7 +39,13 @@ class RentFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_rent, container, false)
+        val view = inflater.inflate(R.layout.fragment_rent, container, false)
+
+        view.findViewById<Button>(R.id.rent_return_button).setOnClickListener{
+            parentFragmentManager.popBackStack("home", FragmentManager.POP_BACK_STACK_INCLUSIVE)
+        }
+
+        return view
     }
 
     companion object {
