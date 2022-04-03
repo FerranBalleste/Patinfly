@@ -10,14 +10,20 @@
     <color name="white">#FFFFFFFF</color>
     <color name="silver">#C0C0C0</color>
 
-    <!-- Light theme colors -->
-    <color name="color_primary">#6C63FF</color>
-    <color name="color_primary_dark">#6C63FF</color>
-    <color name="color_accent">#03DAC5</color>
+    <!-- Theme colors -->
+    <!-- Analogous colors triats amb https://material.io/resources/color/#!/?view.left=0&view.right=0&primary.color=5E35B1&secondary.color=303F9F -->
+    <color name="color_primary">#5e35b1</color>
+    <color name="color_primary_light">#9162e4</color>
+    <color name="color_primary_dark">#260680</color>
+    <color name="color_text_on_p">#ffffff</color>
 
-    <color name="main_text">#2D313D</color>
-    <color name="alt_text">#8D8F97</color>
+    <color name="color_secondary">#303f9f</color>
+    <color name="color_secondary_light">#666ad1</color>
+    <color name="color_secondary_dark">#001970</color>
+    <color name="color_text_on_s">#ffffff</color>
 
     <color name="main_background">#FFFFFF</color>
+    <color name="main_text">#000000</color>
+    <color name="alt_text">#8D8F97</color>
 
 </resources>
