@@ -14,14 +14,16 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
-        val prefs = PreferenceManager.getDefaultSharedPreferences(activity)
+        val prefs = PreferenceManager.getDefaultSharedPreferences(activity!!)
         val listener = SharedPreferences.OnSharedPreferenceChangeListener { prefs, key ->
             if (key == "theme") {
-                val theme = prefs.getString("theme", "Light")
+                val theme = prefs.getString("theme", "Default")
                 if(theme == "Light")
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-                else
+                else if(theme == "Dark")
                     AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+                else
+                    AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_FOLLOW_SYSTEM)
             }
         }
         prefs.registerOnSharedPreferenceChangeListener(listener)

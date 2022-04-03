@@ -11,7 +11,7 @@
             app:useSimpleSummaryProvider="true" />
 
         <ListPreference
-            app:defaultValue="Light"
+            app:defaultValue="Default"
             app:entries="@array/theme"
             app:entryValues="@array/theme"
             app:key="theme"
