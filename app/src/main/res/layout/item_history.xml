@@ -1,14 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="@dimen/list_item_height"
+    android:layout_height="@dimen/history_item_height"
     android:layout_margin="@dimen/margin_medium"
     android:background="@color/cardview_light_background"
     android:gravity="center_vertical">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=""/>
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/hitem_card"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/margin_medium"
+        android:clickable="false">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/hitem_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:rotation="+40"
+                android:text=""
+                android:textColor="@color/main_text"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/hitem_separator"
+                app:layout_constraintEnd_toStartOf="@+id/hitem_price"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/hitem_start"
+                app:layout_constraintTop_toTopOf="@+id/hitem_duration"
+                app:layout_constraintVertical_bias="0.31"
+                tools:text="PF001" />
+
+            <TextView
+                android:id="@+id/hitem_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="@+id/hitem_separator"
+                app:layout_constraintEnd_toStartOf="@+id/hitem_separator"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                tools:text="18-10-2019 22:00:06" />
+
+            <TextView
+                android:id="@+id/hitem_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:text="TextView"
+                app:layout_constraintBottom_toBottomOf="@+id/hitem_separator"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/hitem_separator"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="1.0"
+                tools:text="18-10-2019 22:06:09" />
+
+            <TextView
+                android:id="@+id/hitem_separator"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="-"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.95" />
+
+            <TextView
+                android:id="@+id/hitem_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/main_text"
+                app:layout_constraintBottom_toTopOf="@+id/hitem_end"
+                app:layout_constraintEnd_toEndOf="@+id/hitem_end"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/hitem_price"
+                app:layout_constraintTop_toBottomOf="@+id/hitem_duration"
+                tools:text="5.23 km" />
+
+            <TextView
+                android:id="@+id/hitem_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="@color/main_text"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/hitem_end"
+                app:layout_constraintEnd_toEndOf="@+id/hitem_end"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toEndOf="@+id/hitem_price"
+                app:layout_constraintTop_toTopOf="@+id/hitem_price"
+                app:layout_constraintVertical_bias="0.0"
+                tools:text="6 min" />
+
+            <TextView
+                android:id="@+id/hitem_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/main_text"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toTopOf="@+id/hitem_separator"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.19999999"
+                tools:text="9.56 €" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </com.google.android.material.card.MaterialCardView>
 </FrameLayout>

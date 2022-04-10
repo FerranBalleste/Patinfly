@@ -1,5 +1,6 @@
 package com.example.patinfly.model
 
+import android.util.Log
 import com.google.gson.Gson
 
 class HistoryElementParser {

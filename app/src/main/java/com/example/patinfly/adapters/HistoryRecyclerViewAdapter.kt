@@ -18,12 +18,23 @@ class HistoryRecyclerViewAdapter(private val historyElements: HistoryElements) :
          * (custom ViewHolder).
          */
         class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            val textView: TextView
+            val name: TextView
+            val startTime: TextView
+            val endTime: TextView
+            val duration: TextView
+            val distance: TextView
+            val price: TextView
+
             val root: View
 
             init {
                 // Define click listener for the ViewHolder's View.
-                textView = view.findViewById(R.id.textView)
+                name = view.findViewById(R.id.hitem_name)
+                startTime = view.findViewById(R.id.hitem_start)
+                endTime = view.findViewById(R.id.hitem_end)
+                duration = view.findViewById(R.id.hitem_duration)
+                distance = view.findViewById(R.id.hitem_distance)
+                price = view.findViewById(R.id.hitem_price)
                 root = view
             }
         }
@@ -42,7 +53,13 @@ class HistoryRecyclerViewAdapter(private val historyElements: HistoryElements) :
 
             // Get element from your dataset at this position and replace the
             // contents of the view with that element
-            viewHolder.textView.text = historyElements.historyElements.get(position).uuid
+            viewHolder.name.text = historyElements.historyElements.get(position).name
+            viewHolder.startTime.text = historyElements.historyElements.get(position).startTime
+            viewHolder.endTime.text = historyElements.historyElements.get(position).endTime
+            viewHolder.duration.text = historyElements.historyElements.get(position).duration
+            viewHolder.distance.text = historyElements.historyElements.get(position).distance
+            viewHolder.price.text = historyElements.historyElements.get(position).price
+
             viewHolder.root.setOnClickListener {
                 Toast.makeText(viewHolder.root.context,
                     "Row selected %d".format(position),
