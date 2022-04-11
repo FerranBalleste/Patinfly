@@ -1,40 +1,21 @@
 package com.example.patinfly.fragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.TableLayout
-import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.commit
-import androidx.fragment.app.replace
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.patinfly.R
-import com.google.android.material.card.MaterialCardView
+import com.example.patinfly.adapters.ScooterRecyclerViewAdapter
+import com.example.patinfly.base.AppConfig
+import com.example.patinfly.model.Scooters
+import com.example.patinfly.repositories.ScooterRepository
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
-/**
- * A simple [Fragment] subclass.
- * Use the [HomeFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class HomeFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    private lateinit var scooterRecyclerView: RecyclerView
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -42,6 +23,14 @@ class HomeFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
+        // scooterElements
+        val scooters: Scooters = ScooterRepository.activeScooters(requireActivity(), AppConfig.DEFAULT_SCOOTER_RAW_JSON_FILE)
+        scooterRecyclerView = view.findViewById(R.id.home_recycler_view)
+        scooterRecyclerView.setHasFixedSize(true)                                                   // Increase performance when the size is static
+        scooterRecyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)       // Our RecyclerView is using the linear layout manager
+        scooterRecyclerView.adapter = ScooterRecyclerViewAdapter(scooters)                          // Set adapter
+
+        /*
         //Click on card
         view.findViewById<MaterialCardView>(R.id.home_card1).setOnClickListener {
             val table = view.findViewById<TableLayout>(R.id.home_hidable_table)
@@ -59,27 +48,8 @@ class HomeFragment : Fragment() {
                 addToBackStack("home")
             }
         }
-
+        */
         return view
     }
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment HomeFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            HomeFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
-    }
 }

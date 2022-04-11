@@ -27,6 +27,7 @@ class HistoryRepository {
             return HistoryRepository.activeHistory(context, resource)
         }
 
+        /*
         fun activeHistory(): HistoryElements {
             val historyElements: HistoryElements = HistoryElements()
             val uuidList: Array<String> =AppConfig.DEFAULT_HISTORY_ID_ARRAY
@@ -38,5 +39,6 @@ class HistoryRepository {
 
             return historyElements
         }
+        */
     }
 }

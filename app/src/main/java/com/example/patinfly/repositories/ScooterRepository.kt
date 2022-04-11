@@ -28,7 +28,7 @@ class ScooterRepository {
             val resource: String = AppConfig.DEFAULT_SCOOTER_RAW_JSON_FILE
             return ScooterRepository.activeScooters(context, resource)
         }
-
+        /*
         fun activeScooters(): Scooters {
             val scooters: Scooters = Scooters()
             val uuidList: Array<String> =AppConfig.DEFAULT_SCOOTERS_ID_ARRAY
@@ -40,5 +40,6 @@ class ScooterRepository {
 
             return scooters
         }
+         */
     }
 }

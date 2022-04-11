@@ -1,8 +1,10 @@
 package com.example.patinfly.adapters
 
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
@@ -18,12 +20,18 @@ class ScooterRecyclerViewAdapter(private val scooters: Scooters) :
          * (custom ViewHolder).
          */
         class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-            val textView: TextView
+            val name: TextView
+            val lat: TextView
+            val lon: TextView
+            val image: ImageView
             val root: View
 
             init {
                 // Define click listener for the ViewHolder's View.
-                textView = view.findViewById(R.id.textView)
+                name = view.findViewById(R.id.sitem_name)
+                lat = view.findViewById(R.id.sitem_lat)
+                lon = view.findViewById(R.id.sitem_lon)
+                image = view.findViewById(R.id.sitem_image)
                 root = view
             }
         }
@@ -42,7 +50,20 @@ class ScooterRecyclerViewAdapter(private val scooters: Scooters) :
 
             // Get element from your dataset at this position and replace the
             // contents of the view with that element
-            viewHolder.textView.text = scooters.scooters.get(position).uuid
+            viewHolder.name.text = scooters.scooters.get(position).name
+            viewHolder.lat.text = scooters.scooters.get(position).lat
+            viewHolder.lon.text = scooters.scooters.get(position).lon
+            viewHolder.image.setImageResource(when (scooters.scooters.get(position).lon){
+                "0" -> R.drawable.outline_battery_0_bar_24
+                "1" -> R.drawable.outline_battery_1_bar_24
+                "2" -> R.drawable.outline_battery_2_bar_24
+                "3" -> R.drawable.outline_battery_3_bar_24
+                "4" -> R.drawable.outline_battery_5_bar_24
+                "5" -> R.drawable.outline_battery_full_24
+                "6" -> R.drawable.outline_battery_0_bar_24
+                else -> R.drawable.outline_battery_0_bar_24
+            })
+
             viewHolder.root.setOnClickListener {
                 Toast.makeText(viewHolder.root.context,
                     "Row selected %d".format(position),
