@@ -17,14 +17,14 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <EditText
-            android:id="@+id/login_username"
+            android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="10sp"
             android:autofillHints="username"
             android:ems="10"
-            android:hint="@string/username"
-            android:inputType="textPersonName"
+            android:hint="@string/e_mail"
+            android:inputType="textWebEmailAddress"
             android:textColorHint="@color/alt_text"
             android:textSize="24sp" />
 

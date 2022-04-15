@@ -28,27 +28,8 @@ class HomeFragment : Fragment() {
         scooterRecyclerView = view.findViewById(R.id.home_recycler_view)
         scooterRecyclerView.setHasFixedSize(true)                                                   // Increase performance when the size is static
         scooterRecyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)       // Our RecyclerView is using the linear layout manager
-        scooterRecyclerView.adapter = ScooterRecyclerViewAdapter(scooters)                          // Set adapter
+        scooterRecyclerView.adapter = ScooterRecyclerViewAdapter(scooters)   // Set adapter
 
-        /*
-        //Click on card
-        view.findViewById<MaterialCardView>(R.id.home_card1).setOnClickListener {
-            val table = view.findViewById<TableLayout>(R.id.home_hidable_table)
-            if(table.visibility == View.VISIBLE){
-                table.visibility = View.GONE
-            }else{
-                table.visibility = View.VISIBLE
-            }
-        }
-
-        view.findViewById<Button>(R.id.home_button1).setOnClickListener {
-            parentFragmentManager.commit {
-                replace<RentFragment>(R.id.nav_host_fragment_content_drawer)
-                setReorderingAllowed(true)
-                addToBackStack("home")
-            }
-        }
-        */
         return view
     }
 

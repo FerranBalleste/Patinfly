@@ -14,7 +14,6 @@ private const val FIRST_PHOTO = 1
 private const val MAX_PHOTO = 5
 
 class HelpFragment : Fragment() {
-    // TODO: Rename and change types of parameters
     private var currentPic = FIRST_PHOTO
     private var maxPic = MAX_PHOTO
 

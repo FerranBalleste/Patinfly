@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/main_background"
+    tools:context=".fragments.RentFragment">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.35">
+
+        <TextView
+            android:id="@+id/details_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:layout_marginTop="40dp"
+            android:text="Name:"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/details_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:textSize="24sp"
+            app:layout_constraintStart_toEndOf="@+id/details_text1"
+            app:layout_constraintTop_toTopOf="@+id/details_text1"
+            tools:text="PF001" />
+
+        <TextView
+            android:id="@+id/details_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="UUID:"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/details_text1"
+            app:layout_constraintTop_toBottomOf="@+id/details_text1" />
+
+        <TextView
+            android:id="@+id/details_uuid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/details_name"
+            app:layout_constraintTop_toTopOf="@+id/details_text2"
+            tools:text="PF001" />
+
+        <TextView
+            android:id="@+id/details_text3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Location:"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/details_text1"
+            app:layout_constraintTop_toBottomOf="@+id/details_text2" />
+
+        <TextView
+            android:id="@+id/details_lat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/details_text3"
+            app:layout_constraintStart_toStartOf="@+id/details_uuid"
+            tools:text="41.1189° N" />
+
+        <TextView
+            android:id="@+id/details_lon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/details_text3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/details_date"
+            tools:text="1.2445° E" />
+
+        <TextView
+            android:id="@+id/details_text4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Distance:"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/details_text1"
+            app:layout_constraintTop_toBottomOf="@+id/details_text3" />
+
+        <TextView
+            android:id="@+id/details_distance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/details_lat"
+            app:layout_constraintTop_toTopOf="@+id/details_text4"
+            tools:text="PF001" />
+
+        <TextView
+            android:id="@+id/details_text5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Last maintenance:"
+            android:textSize="24sp"
+            app:layout_constraintStart_toStartOf="@+id/details_text1"
+            app:layout_constraintTop_toBottomOf="@+id/details_text4" />
+
+        <TextView
+            android:id="@+id/details_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="40dp"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@+id/details_text5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/details_text5"
+            tools:text="@string/_05_08_2021" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ImageView
+        android:id="@+id/details_image"
+        android:layout_width="110dp"
+        android:layout_height="50dp"
+        android:paddingLeft="30dp"
+        android:paddingRight="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="0.18"
+        app:srcCompat="@drawable/outline_battery_0_bar_24"
+        tools:background="@color/main_background" />
+
+    <Button
+        android:id="@+id/details_button_return"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:text="@string/returntext"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/details_image"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/details_button_rent"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:text="@string/rent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/details_image" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

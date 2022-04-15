@@ -1,6 +1,7 @@
 package com.example.patinfly.repositories
 
 import android.content.Context
+import android.util.Log
 import com.example.patinfly.base.AppConfig
 import com.example.patinfly.model.*
 
@@ -16,9 +17,13 @@ class HistoryRepository {
         fun activeHistory(context: Context, resource: String): HistoryElements {
             val historyElements: HistoryElements
             val jsonResource: String? = AssetsProvider.getJsonDataFromRawAsset(context, resource)
+            if (jsonResource != null) {
+                Log.e("HistoryRecycler", jsonResource)
+            }
             jsonResource.let {
                 historyElements = HistoryElementParser.parseFromJson(jsonResource!!)
             }
+            Log.e("HistoryRecycler", historyElements.historyElements.toString())
             return historyElements
         }
 

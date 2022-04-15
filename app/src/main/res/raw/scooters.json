@@ -1,6 +1,6 @@
 { "scooters": [
   {"name":  "PF001", "uuid": "PFTGN-00001", "lon": "1.2444909° E", "lat": "41.1189° N", "battery": "0", "distance": "10.00", "lastMaintenance":  "20-9-2021", "state": "active"},
-  {"name":  "PF002", "uuid": "PFTGN-00002", "lon": "1.2444909° E", "lat": "41.1189° N", "battery": "1", "distance": "20.00", "lastMaintenance":  "22-9-2021", "state": "active"},
+  {"name":  "PF002", "uuid": "PFTGN-00002", "lon": "1.2444909° E", "lat": "41.1189° N", "battery": "6", "distance": "20.00", "lastMaintenance":  "22-9-2021", "state": "active"},
   {"name":  "PF003", "uuid": "PFTGN-00003", "lon": "1.2444909° E", "lat": "41.1189° N", "battery": "3", "distance": "30.00", "lastMaintenance":  "23-9-2021", "state": "active"},
   {"name":  "PF004", "uuid": "PFTGN-00004", "lon": "1.2444909° E", "lat": "41.1189° N", "battery": "2", "distance": "40.00", "lastMaintenance":  "25-9-2021", "state": "active"},
   {"name":  "PF005", "uuid": "PFTGN-00005", "lon": "1.2444909° E", "lat": "41.1189° N", "battery": "4", "distance": "60.50", "lastMaintenance":  "26-9-2021", "state": "maintenance"},

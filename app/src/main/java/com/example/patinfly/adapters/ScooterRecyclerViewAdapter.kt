@@ -1,15 +1,22 @@
 package com.example.patinfly.adapters
 
-import android.media.Image
+import android.content.Context
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.commit
+import androidx.fragment.app.replace
 import androidx.recyclerview.widget.RecyclerView
+import com.example.patinfly.NavigationDrawerActivity
 import com.example.patinfly.model.Scooters
 import com.example.patinfly.R
+import com.example.patinfly.fragments.DetailsFragment
+import com.example.patinfly.fragments.RentFragment
 
 
 class ScooterRecyclerViewAdapter(private val scooters: Scooters) :
@@ -53,7 +60,7 @@ class ScooterRecyclerViewAdapter(private val scooters: Scooters) :
             viewHolder.name.text = scooters.scooters.get(position).name
             viewHolder.lat.text = scooters.scooters.get(position).lat
             viewHolder.lon.text = scooters.scooters.get(position).lon
-            viewHolder.image.setImageResource(when (scooters.scooters.get(position).lon){
+            viewHolder.image.setImageResource(when (scooters.scooters.get(position).battery){
                 "0" -> R.drawable.outline_battery_0_bar_24
                 "1" -> R.drawable.outline_battery_1_bar_24
                 "2" -> R.drawable.outline_battery_2_bar_24
@@ -65,9 +72,17 @@ class ScooterRecyclerViewAdapter(private val scooters: Scooters) :
             })
 
             viewHolder.root.setOnClickListener {
-                Toast.makeText(viewHolder.root.context,
-                    "Row selected %d".format(position),
-                    Toast.LENGTH_LONG).show()
+                //Toast.makeText(viewHolder.root.context, "Row selected %d".format(position), Toast.LENGTH_LONG).show()
+                val context: Context = viewHolder.root.context
+                if(context is NavigationDrawerActivity) {
+                    context.supportFragmentManager.commit {
+                        val fragment = DetailsFragment()
+                        fragment.arguments = scooters.scooters.get(position).bundle
+                        replace(R.id.nav_host_fragment_content_drawer, fragment)
+                        setReorderingAllowed(true)
+                        addToBackStack("home")
+                    }
+                }
             }
         }
 
