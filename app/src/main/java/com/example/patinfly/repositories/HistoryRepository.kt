@@ -10,26 +10,22 @@ class HistoryRepository {
     companion object {
 
         fun activeHistoryList(context: Context, resource: String): List<HistoryElement> {
-            val historyElements: HistoryElements = HistoryRepository.activeHistory(context, resource)
+            val historyElements: HistoryElements = activeHistory(context, resource)
             return historyElements.historyElements
         }
 
         fun activeHistory(context: Context, resource: String): HistoryElements {
             val historyElements: HistoryElements
             val jsonResource: String? = AssetsProvider.getJsonDataFromRawAsset(context, resource)
-            if (jsonResource != null) {
-                Log.e("HistoryRecycler", jsonResource)
-            }
             jsonResource.let {
                 historyElements = HistoryElementParser.parseFromJson(jsonResource!!)
             }
-            Log.e("HistoryRecycler", historyElements.historyElements.toString())
             return historyElements
         }
 
         fun activeHistory(context: Context): HistoryElements {
             val resource: String = AppConfig.DEFAULT_HISTORY_RAW_JSON_FILE
-            return HistoryRepository.activeHistory(context, resource)
+            return activeHistory(context, resource)
         }
 
         /*

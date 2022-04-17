@@ -70,5 +70,10 @@
     <string name="introduce_the_following_code_to_unlock">Introduce the following code to unlock:</string>
     <string name="dash">-</string>
     <string name="battery_low">Battery low</string>
+    <string name="name2">Name:</string>
+    <string name="uuid2">UUID:</string>
+    <string name="location2">Location:</string>
+    <string name="distance2">Distance:</string>
+    <string name="last_maintenance2">Last maintenance:</string>
 
 </resources>

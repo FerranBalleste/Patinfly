@@ -6,121 +6,128 @@
     android:layout_height="match_parent"
     tools:context=".SignupActivity">
 
-    <LinearLayout
-        android:id="@+id/linearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <EditText
-            android:id="@+id/signup_name"
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8sp"
-            android:autofillHints="name"
-            android:ems="10"
-            android:hint="@string/name"
-            android:inputType="textPersonName"
-            android:textColorHint="@color/alt_text"
-            android:textSize="24sp" />
+            android:layout_height="wrap_content">
 
-        <EditText
-            android:id="@+id/signup_surname"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8sp"
-            android:autofillHints="surname"
-            android:ems="10"
-            android:hint="@string/surname"
-            android:inputType="textPersonName"
-            android:textColorHint="@color/alt_text"
-            android:textSize="24sp" />
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:contentDescription="@string/pantifly_icon_content_description"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_patinflyicon2" />
 
-        <EditText
-            android:id="@+id/signup_email"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8sp"
-            android:autofillHints="emailAddress"
-            android:ems="10"
-            android:hint="@string/e_mail"
-            android:inputType="textEmailAddress"
-            android:textColorHint="@color/alt_text"
-            android:textSize="24sp" />
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/imageView2"
+                app:layout_constraintVertical_bias="0.0">
 
-        <EditText
-            android:id="@+id/signup_phone"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8sp"
-            android:autofillHints="phone"
-            android:ems="10"
-            android:hint="@string/phone_number"
-            android:inputType="phone"
-            android:textColorHint="@color/alt_text"
-            android:textSize="24sp" />
+                <EditText
+                    android:id="@+id/signup_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="name"
+                    android:hint="@string/name"
+                    android:inputType="textPersonName"
+                    android:textColorHint="@color/alt_text"
+                    android:textSize="24sp" />
 
-        <EditText
-            android:id="@+id/signup_dni"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8sp"
-            android:autofillHints="dni"
-            android:ems="10"
-            android:hint="@string/dni"
-            android:inputType="textPersonName"
-            android:textColorHint="@color/alt_text"
-            android:textSize="24sp" />
+                <EditText
+                    android:id="@+id/signup_surname"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="surname"
+                    android:hint="@string/surname"
+                    android:inputType="textPersonName"
+                    android:textColorHint="@color/alt_text"
+                    android:textSize="24sp" />
 
-        <EditText
-            android:id="@+id/signup_password1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8sp"
-            android:autofillHints="password"
-            android:ems="10"
-            android:hint="@string/password"
-            android:inputType="textPersonName"
-            android:textColorHint="@color/alt_text"
-            android:textSize="24sp" />
+                <EditText
+                    android:id="@+id/signup_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="emailAddress"
+                    android:hint="@string/e_mail"
+                    android:inputType="textEmailAddress"
+                    android:textColorHint="@color/alt_text"
+                    android:textSize="24sp" />
 
-        <EditText
-            android:id="@+id/signup_password2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="8sp"
-            android:autofillHints="password"
-            android:ems="10"
-            android:hint="@string/repeat_password"
-            android:inputType="textPersonName"
-            android:textColorHint="@color/alt_text"
-            android:textSize="24sp" />
-    </LinearLayout>
+                <EditText
+                    android:id="@+id/signup_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="phone"
+                    android:hint="@string/phone_number"
+                    android:inputType="phone"
+                    android:textColorHint="@color/alt_text"
+                    android:textSize="24sp" />
 
-    <Button
-        android:id="@+id/signup_button"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sign_up"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        tools:ignore="TextContrastCheck" />
+                <EditText
+                    android:id="@+id/signup_dni"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="dni"
+                    android:hint="@string/dni"
+                    android:inputType="textPersonName"
+                    android:textColorHint="@color/alt_text"
+                    android:textSize="24sp" />
 
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="380dp"
-        android:layout_height="121dp"
-        android:contentDescription="@string/pantifly_icon_content_description"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_patinflyicon2" />
+                <EditText
+                    android:id="@+id/signup_password1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="password"
+                    android:hint="@string/password"
+                    android:inputType="textPersonName"
+                    android:textColorHint="@color/alt_text"
+                    android:textSize="24sp" />
+
+                <EditText
+                    android:id="@+id/signup_password2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:autofillHints="password"
+                    android:ems="10"
+                    android:hint="@string/repeat_password"
+                    android:inputType="textPersonName"
+                    android:textColorHint="@color/alt_text"
+                    android:textSize="24sp" />
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/signup_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/sign_up"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+                tools:ignore="TextContrastCheck" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

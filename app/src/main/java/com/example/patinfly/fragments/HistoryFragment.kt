@@ -30,8 +30,6 @@ class HistoryFragment : Fragment() {
         //val historyElements = HistoryElements()
         //historyElements.historyElements.add(HistoryElement("banana", "UUID", "25-9-2020 19:00", "25-9-2020 20:00", "6", "9", "10"))
         val historyElements: HistoryElements = HistoryRepository.activeHistory(requireActivity(), AppConfig.DEFAULT_HISTORY_RAW_JSON_FILE)
-        Log.e("HistoryRecycler", historyElements.historyElements.toString())
-
 
         // RecyclerView
         historyRecyclerView = view.findViewById(R.id.history_recycler_view)
