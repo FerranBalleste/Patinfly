@@ -10,7 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/main_background">
 
 
         <TextView
@@ -54,12 +55,12 @@
             android:id="@+id/sitem_image"
             android:layout_width="50dp"
             android:layout_height="50dp"
+            android:contentDescription="@string/battery_low"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/sitem_lat"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/outline_battery_0_bar_24"
-            android:contentDescription="@string/battery_low" />
+            app:srcCompat="@drawable/outline_battery_0_bar_24" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

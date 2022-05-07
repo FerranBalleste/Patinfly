@@ -76,4 +76,7 @@
     <string name="distance2">Distance:</string>
     <string name="last_maintenance2">Last maintenance:</string>
 
+    <string name="preference_file_key">app_dict_shared_preference</string>
+    <string name="preference_key_login_email">STORED_LOGIN_EMAIL</string>
+
 </resources>

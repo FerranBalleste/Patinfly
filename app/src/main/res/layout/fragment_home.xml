@@ -28,7 +28,7 @@
         android:layout_marginTop="100dp"
         android:layout_marginEnd="20dp"
         android:layout_marginBottom="50dp"
-        android:background="@color/cardview_shadow_start_color"
+        android:background="@color/alt_text"
         android:scrollbars="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

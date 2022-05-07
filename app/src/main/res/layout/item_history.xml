@@ -10,7 +10,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/main_background">
 
         <TextView
             android:id="@+id/hitem_name"
@@ -34,11 +35,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="@string/dash"
+            android:textColor="@color/alt_text"
             app:layout_constraintBottom_toBottomOf="@+id/hitem_separator"
             app:layout_constraintEnd_toStartOf="@+id/hitem_separator"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
+            tools:ignore="TextContrastCheck"
             tools:text="18-10-2019 22:00:06" />
 
         <TextView
@@ -47,11 +50,13 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="20dp"
             android:text="@string/dash"
+            android:textColor="@color/alt_text"
             app:layout_constraintBottom_toBottomOf="@+id/hitem_separator"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/hitem_separator"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
+            tools:ignore="TextContrastCheck"
             tools:text="18-10-2019 22:06:09" />
 
         <TextView
@@ -59,11 +64,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/dash"
+            android:textColor="@color/alt_text"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.95" />
+            app:layout_constraintVertical_bias="0.95"
+            tools:ignore="TextContrastCheck" />
 
         <TextView
             android:id="@+id/hitem_distance"

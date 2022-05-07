@@ -27,7 +27,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
     override fun onCreatePreferences(savedInstanceState: Bundle?, rootKey: String?) {
         setPreferencesFromResource(R.xml.root_preferences, rootKey)
 
-        val prefs = PreferenceManager.getDefaultSharedPreferences(activity!!)
+        val sPref = PreferenceManager.getDefaultSharedPreferences(activity!!)
         val listener = SharedPreferences.OnSharedPreferenceChangeListener { prefs, key ->
             if (key == "theme") {
                 when (prefs.getString("theme", "Default")) {
@@ -37,7 +37,7 @@ class SettingsFragment : PreferenceFragmentCompat() {
                 }
             }
         }
-        prefs.registerOnSharedPreferenceChangeListener(listener)
+        sPref.registerOnSharedPreferenceChangeListener(listener)
     }
 
 }
