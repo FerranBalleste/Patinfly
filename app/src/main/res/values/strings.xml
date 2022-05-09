@@ -78,5 +78,9 @@
 
     <string name="preference_file_key">app_dict_shared_preference</string>
     <string name="preference_key_login_email">STORED_LOGIN_EMAIL</string>
+    <string name="would_you_like_to_see_the_tutorial">Would you like to see the tutorial?</string>
+    <string name="yes">Yes</string>
+    <string name="no_don_t_ask_again">No, don\'t ask again</string>
+    <string name="tutorial">Tutorial</string>
 
 </resources>

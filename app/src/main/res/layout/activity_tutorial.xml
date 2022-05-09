@@ -4,23 +4,68 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/main_background"
-    tools:context=".fragments.HelpFragment" >
+    tools:context=".TutorialActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/tutorial_inner_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="300dp"
+        android:background="@drawable/button_bg"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/tutorial_question"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:text="@string/would_you_like_to_see_the_tutorial"
+            android:textColor="@color/color_text_on_s"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toTopOf="@+id/tutorial_yes_btn"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/tutorial_yes_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color_secondary_dark"
+            android:text="@string/yes"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
+            android:id="@+id/tutorial_no_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/color_secondary_light"
+            android:text="@string/no_don_t_ask_again"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tutorial_yes_btn" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
-        android:id="@+id/textView9"
+        android:id="@+id/tutorial_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="30dp"
-        android:text="@string/help"
+        android:text="@string/tutorial"
         android:textSize="48sp"
-        app:layout_constraintBottom_toTopOf="@+id/help_picture"
+        app:layout_constraintBottom_toTopOf="@+id/tutorial_picture"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
-        android:id="@+id/help_picture"
+        android:id="@+id/tutorial_picture"
         android:layout_width="300dp"
         android:layout_height="450dp"
         android:layout_marginTop="40dp"
@@ -29,6 +74,7 @@
         android:contentDescription="@string/todo"
         android:maxHeight="100dp"
         android:src="@drawable/help_image1"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,18 +82,18 @@
         tools:ignore="ImageContrastCheck" />
 
     <TableRow
-        android:id="@+id/tableRow"
+        android:id="@+id/tutorial_table"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="21dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/help_picture"
+        app:layout_constraintTop_toBottomOf="@+id/tutorial_picture"
         app:layout_constraintVertical_bias="1.0">
 
         <Button
-            android:id="@+id/help_leftleft"
+            android:id="@+id/tutorial_leftleft"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -57,7 +103,7 @@
             style="?android:attr/buttonBarButtonStyle" />
 
         <Button
-            android:id="@+id/help_left"
+            android:id="@+id/tutorial_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -67,7 +113,7 @@
             style="?android:attr/buttonBarButtonStyle" />
 
         <Button
-            android:id="@+id/help_right"
+            android:id="@+id/tutorial_right"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
@@ -77,7 +123,7 @@
             style="?android:attr/buttonBarButtonStyle" />
 
         <Button
-            android:id="@+id/help_rightright"
+            android:id="@+id/tutorial_rightright"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"

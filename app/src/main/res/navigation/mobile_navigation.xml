@@ -25,18 +25,13 @@
         android:label="Profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
-        android:id="@+id/helpFragment"
-        android:name="com.example.patinfly.fragments.HelpFragment"
-        android:label="fragment_help"
-        tools:layout="@layout/fragment_help" />
-    <fragment
         android:id="@+id/rentFragment"
         android:name="com.example.patinfly.fragments.RentFragment"
         android:label="fragment_rent"
         tools:layout="@layout/fragment_history" />
     <fragment
         android:id="@+id/detailsFragment"
-        android:name="com.example.patinfly.DetailsFragment"
+        android:name="com.example.patinfly.fragments.DetailsFragment"
         android:label="fragment_details"
         tools:layout="@layout/fragment_details" />
 </navigation>

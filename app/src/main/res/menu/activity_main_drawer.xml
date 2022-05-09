@@ -20,10 +20,6 @@
             android:id="@+id/settingsFragment"
             android:icon="@drawable/baseline_settings_24"
             android:title="@string/settings" />
-        <item
-            android:id="@+id/helpFragment"
-            android:icon="@android:drawable/ic_menu_help"
-            android:title="@string/help" />
 
     </group>
 </menu>

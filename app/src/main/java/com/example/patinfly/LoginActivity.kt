@@ -64,7 +64,7 @@ class LoginActivity : AppCompatActivity() {
             editor.apply()
 
             //Start Navigation Drawer
-            val intent = Intent(this, NavigationDrawerActivity::class.java)
+            val intent = Intent(this, TutorialActivity::class.java)
             startActivity(intent)
         }
     }
