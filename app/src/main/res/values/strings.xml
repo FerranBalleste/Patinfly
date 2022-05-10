@@ -82,5 +82,6 @@
     <string name="yes">Yes</string>
     <string name="no_don_t_ask_again">No, don\'t ask again</string>
     <string name="tutorial">Tutorial</string>
+    <string name="finish_tutorial">Finish Tutorial</string>
 
 </resources>

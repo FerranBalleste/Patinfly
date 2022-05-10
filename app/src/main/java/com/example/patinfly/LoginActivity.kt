@@ -1,14 +1,11 @@
 package com.example.patinfly
 
-import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Build
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.widget.Button
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.preference.PreferenceManager
@@ -27,11 +24,7 @@ class LoginActivity : AppCompatActivity() {
         installSplashScreen()
 
         //Theme Configuration Settings
-        val pref = PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "Default")
-        if(pref == "Light")
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-        else if(pref == "Dark")
-            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+        themeSettings()
 
         //Set Content View
         binding = ActivityLoginBinding.inflate(layoutInflater)
@@ -41,13 +34,7 @@ class LoginActivity : AppCompatActivity() {
 
         //Email Preference
         val masterKeyAlias: String = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
-        val sharedPref: SharedPreferences = EncryptedSharedPreferences.create(
-            "secret_shared_prefs",
-            masterKeyAlias,
-            this,
-            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-        )
+        val sharedPref = getEncryptedPrefs()
         val username = sharedPref.getString(getString(R.string.preference_key_login_email), "")
         binding.loginEmail.setText(username)
 
@@ -56,16 +43,39 @@ class LoginActivity : AppCompatActivity() {
             val intent = Intent(this, SignupActivity::class.java)
             startActivity(intent)
         }
+
         binding.loginButton.setOnClickListener{
-            //Store email
             val editor = sharedPref.edit()
             editor.putString(getString(R.string.preference_key_login_email), binding.loginEmail.text.toString())
-            Log.i("LOGIN_ACTIVITY_EMAIL", binding.loginEmail.text.toString())
+            //Log.i("LOGIN_ACTIVITY_EMAIL", binding.loginEmail.text.toString())
             editor.apply()
 
-            //Start Navigation Drawer
-            val intent = Intent(this, TutorialActivity::class.java)
+            val tutorial = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("tutorial_switch", true)
+            val intent:Intent
+            if(tutorial)
+                intent = Intent(this, TutorialActivity::class.java)
+            else
+                intent = Intent(this, NavigationDrawerActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    private fun themeSettings(){
+        val pref = PreferenceManager.getDefaultSharedPreferences(this).getString("theme", "Default")
+        if(pref == "Light")
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+        else if(pref == "Dark")
+            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+    }
+
+    private fun getEncryptedPrefs(): SharedPreferences{
+        val masterKeyAlias: String = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+        return EncryptedSharedPreferences.create(
+            "secret_shared_prefs",
+            masterKeyAlias,
+            this,
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
     }
 }

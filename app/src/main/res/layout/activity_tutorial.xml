@@ -133,4 +133,13 @@
             style="?android:attr/buttonBarButtonStyle" />
     </TableRow>
 
+    <Button
+        android:id="@+id/tutorial_finish_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/finish_tutorial"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/tutorial_table"
+        app:layout_constraintEnd_toEndOf="@+id/tutorial_table" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

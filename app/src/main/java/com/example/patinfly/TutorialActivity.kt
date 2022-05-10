@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import androidx.core.content.ContextCompat
+import androidx.preference.PreferenceManager
 import com.example.patinfly.databinding.ActivityTutorialBinding
 
 private const val FIRST_PHOTO = 1
@@ -25,9 +26,16 @@ class TutorialActivity : AppCompatActivity() {
         binding.tutorialYesBtn.setOnClickListener(){
             binding.tutorialInnerLayout.visibility = View.GONE
 
+            val finishBtn = binding.tutorialFinishBtn
+            finishBtn.visibility = View.VISIBLE
+            finishBtn.setOnClickListener(){
+                updatePreferences()
+                val intent = Intent(this, NavigationDrawerActivity::class.java)
+                startActivity(intent)
+            }
+
             val picture = binding.tutorialPicture
             picture.visibility = View.VISIBLE
-
             binding.tutorialLeftleft.setOnClickListener{
                 currentPic = 1
                 updatePhoto(picture)
@@ -47,6 +55,7 @@ class TutorialActivity : AppCompatActivity() {
         }
 
         binding.tutorialNoBtn.setOnClickListener(){
+            updatePreferences()
             val intent = Intent(this, NavigationDrawerActivity::class.java)
             startActivity(intent)
         }
@@ -58,5 +67,12 @@ class TutorialActivity : AppCompatActivity() {
         val id = this.resources.getIdentifier(name, "drawable", this.packageName)
         val drawable = ContextCompat.getDrawable(this, id)
         imageView.setImageDrawable(drawable)
+    }
+
+    private fun updatePreferences(){
+        val prefM = PreferenceManager.getDefaultSharedPreferences(this)
+        val editor = prefM.edit()
+        editor.putBoolean("tutorial_switch", false)
+        editor.apply()
     }
 }
