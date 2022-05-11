@@ -2,9 +2,8 @@ package com.example.patinfly
 
 import android.content.Intent
 import android.content.SharedPreferences
-import android.os.Build
 import android.os.Bundle
-import androidx.annotation.RequiresApi
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -12,11 +11,13 @@ import androidx.preference.PreferenceManager
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import com.example.patinfly.databinding.ActivityLoginBinding
+import com.example.patinfly.persitence.AppDatabase
+import com.example.patinfly.persitence.DevUtils
+import com.example.patinfly.persitence.UserDao
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
-    @RequiresApi(Build.VERSION_CODES.M)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,7 +34,6 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         //Email Preference
-        val masterKeyAlias: String = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
         val sharedPref = getEncryptedPrefs()
         val username = sharedPref.getString(getString(R.string.preference_key_login_email), "")
         binding.loginEmail.setText(username)
@@ -51,13 +51,33 @@ class LoginActivity : AppCompatActivity() {
             editor.apply()
 
             val tutorial = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("tutorial_switch", true)
-            val intent:Intent
-            if(tutorial)
-                intent = Intent(this, TutorialActivity::class.java)
+            val intent:Intent = if(tutorial)
+                Intent(this, TutorialActivity::class.java)
             else
-                intent = Intent(this, NavigationDrawerActivity::class.java)
+                Intent(this, NavigationDrawerActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        val dbSecondary = AppDatabase.getInstance(this)
+        val userDatabaseSecondary: UserDao = dbSecondary.userDao()
+        databaseSecondary(userDatabaseSecondary)
+
+    }
+
+    fun databaseSecondary(userDao: UserDao){
+        //DevUtils.deleteFakeData(userDao)
+        DevUtils.insertFakeData(userDao)
+        DevUtils.plotDBUsers(userDao)
+    }
+
+    fun databaseSecondary2(userDao: UserDao, view:TextView){
+        DevUtils.deleteFakeData(userDao)
+        DevUtils.insertFakeData(userDao)
+        DevUtils.plotDBUsers(userDao)
+        DevUtils.updateView(userDao, view)
     }
 
     private fun themeSettings(){
