@@ -1,22 +1,17 @@
 package com.example.patinfly.adapters
 
 import android.content.Context
-import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
-import androidx.fragment.app.replace
 import androidx.recyclerview.widget.RecyclerView
 import com.example.patinfly.NavigationDrawerActivity
-import com.example.patinfly.model.Scooters
 import com.example.patinfly.R
 import com.example.patinfly.fragments.DetailsFragment
-import com.example.patinfly.fragments.RentFragment
+import com.example.patinfly.model.Scooters
 
 
 class ScooterRecyclerViewAdapter(private val scooters: Scooters) :

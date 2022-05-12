@@ -3,7 +3,7 @@ package com.example.patinfly
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.widget.TextView
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
@@ -11,12 +11,13 @@ import androidx.preference.PreferenceManager
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import com.example.patinfly.databinding.ActivityLoginBinding
+import com.example.patinfly.developing.DevUtils
 import com.example.patinfly.persitence.AppDatabase
-import com.example.patinfly.persitence.DevUtils
 import com.example.patinfly.persitence.UserDao
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
+    private lateinit var userDao: UserDao
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,13 +46,22 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.loginButton.setOnClickListener{
+            val email = binding.loginEmail.text.toString()
+            val password = binding.loginPassword.text.toString()
+            Log.i("VERIFY USER", "$email $password")
+
+            val correctPwd = DevUtils.verifyUser(userDao, email, password)
+            if(!correctPwd){
+                binding.loginResult.text = "INCORRECT PASSWORD"
+                return@setOnClickListener
+            }
+
             val editor = sharedPref.edit()
-            editor.putString(getString(R.string.preference_key_login_email), binding.loginEmail.text.toString())
-            //Log.i("LOGIN_ACTIVITY_EMAIL", binding.loginEmail.text.toString())
+            editor.putString(getString(R.string.preference_key_login_email), email)
             editor.apply()
 
             val tutorial = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("tutorial_switch", true)
-            val intent:Intent = if(tutorial)
+            val intent: Intent = if (tutorial)
                 Intent(this, TutorialActivity::class.java)
             else
                 Intent(this, NavigationDrawerActivity::class.java)
@@ -61,23 +71,8 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onStart() {
         super.onStart()
-        val dbSecondary = AppDatabase.getInstance(this)
-        val userDatabaseSecondary: UserDao = dbSecondary.userDao()
-        databaseSecondary(userDatabaseSecondary)
-
-    }
-
-    fun databaseSecondary(userDao: UserDao){
-        //DevUtils.deleteFakeData(userDao)
-        DevUtils.insertFakeData(userDao)
-        DevUtils.plotDBUsers(userDao)
-    }
-
-    fun databaseSecondary2(userDao: UserDao, view:TextView){
-        DevUtils.deleteFakeData(userDao)
-        DevUtils.insertFakeData(userDao)
-        DevUtils.plotDBUsers(userDao)
-        DevUtils.updateView(userDao, view)
+        val database = AppDatabase.getInstance(this)
+        userDao = database.userDao()
     }
 
     private fun themeSettings(){
