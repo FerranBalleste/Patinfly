@@ -1,6 +1,7 @@
 package com.example.patinfly.repositories
 
 import android.content.Context
+import android.util.Log
 import com.example.patinfly.base.AppConfig
 import com.example.patinfly.model.ScooterParser
 import com.example.patinfly.model.Scooters
@@ -21,6 +22,7 @@ class ScooterRepository {
             jsonResource.let {
                 scooters = ScooterParser.parseFromJson(jsonResource!!)
             }
+            Log.i("SCOOTER FILE", scooters.scooters.toString())
             return scooters
         }
 

@@ -1,21 +1,18 @@
 package com.example.patinfly.persitence
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 
 @Dao
 interface RentDao {
     @Query("SELECT * FROM rent")
     fun getAll(): List<Rent>
 
-    @Insert
-    fun insertAll(vararg users: User)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    fun insertAll(vararg users: Rent)
 
     @Delete
     fun delete(user: User)
 
-    @Query ("DELETE FROM user")
+    @Query ("DELETE FROM rent")
     fun deleteAll()
 }

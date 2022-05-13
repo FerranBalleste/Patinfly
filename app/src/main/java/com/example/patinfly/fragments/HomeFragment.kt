@@ -1,6 +1,7 @@
 package com.example.patinfly.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,7 @@ class HomeFragment : Fragment() {
 
         // scooterElements
         val scooters: Scooters = ScooterRepository.activeScooters(requireActivity(), AppConfig.DEFAULT_SCOOTER_RAW_JSON_FILE)
+        Log.i("SCOOTERS HOME", scooters.scooters.toString())
         scooterRecyclerView = view.findViewById(R.id.home_recycler_view)
         scooterRecyclerView.setHasFixedSize(true)                                                   // Increase performance when the size is static
         scooterRecyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)       // Our RecyclerView is using the linear layout manager

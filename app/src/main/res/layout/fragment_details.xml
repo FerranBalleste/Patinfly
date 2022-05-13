@@ -11,8 +11,8 @@
         android:id="@+id/constraintLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.35">
@@ -21,7 +21,6 @@
             android:id="@+id/details_text1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
             android:layout_marginTop="40dp"
             android:text="@string/name2"
             android:textSize="24sp"
@@ -39,33 +38,14 @@
             tools:text="PF001" />
 
         <TextView
-            android:id="@+id/details_text2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="@string/uuid2"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="@+id/details_text1"
-            app:layout_constraintTop_toBottomOf="@+id/details_text1" />
-
-        <TextView
-            android:id="@+id/details_uuid"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="24sp"
-            app:layout_constraintStart_toStartOf="@+id/details_name"
-            app:layout_constraintTop_toTopOf="@+id/details_text2"
-            tools:text="PF001" />
-
-        <TextView
             android:id="@+id/details_text3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="35dp"
             android:text="@string/location2"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/details_text1"
-            app:layout_constraintTop_toBottomOf="@+id/details_text2" />
+            app:layout_constraintTop_toBottomOf="@+id/details_text1" />
 
         <TextView
             android:id="@+id/details_lat"
@@ -73,7 +53,7 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="@+id/details_text3"
-            app:layout_constraintStart_toStartOf="@+id/details_uuid"
+            app:layout_constraintStart_toStartOf="@+id/details_name"
             tools:text="41.1189° N" />
 
         <TextView
@@ -90,7 +70,7 @@
             android:id="@+id/details_text4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="35dp"
             android:text="@string/distance2"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/details_text1"
@@ -109,7 +89,7 @@
             android:id="@+id/details_text5"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="35dp"
             android:text="@string/last_maintenance2"
             android:textSize="24sp"
             app:layout_constraintStart_toStartOf="@+id/details_text1"
@@ -119,11 +99,10 @@
             android:id="@+id/details_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="40dp"
+            android:layout_marginTop="20dp"
             android:textSize="20sp"
-            app:layout_constraintBottom_toBottomOf="@+id/details_text5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/details_text5"
+            app:layout_constraintStart_toStartOf="@+id/details_text1"
+            app:layout_constraintTop_toBottomOf="@+id/details_text5"
             tools:text="@string/_05_08_2021" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

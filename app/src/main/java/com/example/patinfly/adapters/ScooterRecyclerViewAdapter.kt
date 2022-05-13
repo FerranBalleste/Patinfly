@@ -1,6 +1,7 @@
 package com.example.patinfly.adapters
 
 import android.content.Context
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -57,7 +58,8 @@ class ScooterRecyclerViewAdapter(private val scooters: Scooters) :
             viewHolder.name.text = scooters.scooters.get(position).name
             viewHolder.lat.text = scooters.scooters.get(position).latitude.toString()
             viewHolder.lon.text = scooters.scooters.get(position).longitude.toString()
-            viewHolder.image.setImageResource(when ((scooters.scooters.get(position).batteryLevel).toInt()*6/100){
+            Log.i("SCOOTER BATTERY CALC", ((scooters.scooters.get(position).battery_level).toInt()*5/100).toString())
+            viewHolder.image.setImageResource(when ((scooters.scooters.get(position).battery_level).toInt()*5/100){
                 0 -> R.drawable.outline_battery_0_bar_24
                 1 -> R.drawable.outline_battery_1_bar_24
                 2 -> R.drawable.outline_battery_2_bar_24
@@ -75,6 +77,7 @@ class ScooterRecyclerViewAdapter(private val scooters: Scooters) :
                     context.supportFragmentManager.commit {
                         val fragment = DetailsFragment()
                         fragment.arguments = scooters.scooters.get(position).bundle
+                        Log.i("SCOOTER FULL", scooters.scooters.get(position).toString())
                         replace(R.id.nav_host_fragment_content_drawer, fragment)
                         setReorderingAllowed(true)
                         addToBackStack("home")

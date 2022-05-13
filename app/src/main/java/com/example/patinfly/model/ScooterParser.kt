@@ -1,5 +1,6 @@
 package com.example.patinfly.model
 
+import android.util.Log
 import com.google.gson.Gson
 
 class ScooterParser {
@@ -11,6 +12,7 @@ class ScooterParser {
             json.let {
                 scooters = gson.fromJson<Scooters>(json, Scooters::class.java)
             }
+            Log.i("SCOOTER FILE 0", scooters.scooters.toString())
             return scooters
         }
     }

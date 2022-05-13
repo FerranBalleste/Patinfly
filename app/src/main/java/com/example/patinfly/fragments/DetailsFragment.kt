@@ -1,6 +1,7 @@
 package com.example.patinfly.fragments
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -28,12 +29,13 @@ class DetailsFragment: Fragment() {
 
         arguments?.let {
             binding.detailsName.text = it.getString("name")
-            binding.detailsUuid.text = it.getString("uuid")
             binding.detailsLat.text = it.getDouble("lat").toString()
             binding.detailsLon.text = it.getDouble("lon").toString()
             binding.detailsDate.text = it.getString("date")
+            Log.i("SCOOTER DETAILS DATE", it.getDouble("date").toString())
             binding.detailsDistance.text = it.getDouble("distance").toString()
-            binding.detailsImage.setImageResource(when (it.getDouble("battery").toInt()*6/100){
+            Log.i("SCOOTER DETAILS BATTERY", it.getDouble("battery").toString())
+            binding.detailsImage.setImageResource(when (it.getDouble("battery").toInt()*5/100){
                 0 -> R.drawable.outline_battery_0_bar_24
                 1 -> R.drawable.outline_battery_1_bar_24
                 2 -> R.drawable.outline_battery_2_bar_24

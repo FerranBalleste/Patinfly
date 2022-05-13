@@ -30,24 +30,35 @@ class SignupActivity : AppCompatActivity() {
 
         binding.signupButton.setOnClickListener{
             val newUser = checkUserParams()
-            DevUtils.insertUser(userDao, newUser)
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
+            newUser?.let {
+                DevUtils.insertUser(userDao, newUser)
+                val intent = Intent(this, LoginActivity::class.java)
+                startActivity(intent)
+            }
         }
     }
 
-    private fun checkUserParams(): User{
-        val email = binding.signupEmail.text.toString()
-        //Check if email exists on database
-
-        val name = binding.signupName.text.toString()
-        val surname = binding.signupName.text.toString()
-        val phone = binding.signupPhone.text.toString().toInt()
-        val dni = binding.signupDni.text.toString()
-        val password = binding.signupDni.text.toString()
-        val hash = hashPassword(password, ((random()*100).toString()))
-
-        return User(0, name, surname, email, phone, dni, hash)
+    private fun checkUserParams(): User?{
+        val message = binding.signupMessage
+        try {
+            val password = binding.signupPassword1.text.toString()
+            val password2 = binding.signupPassword2.text.toString()
+            if(password != password2){
+                message.text = "Introduce the same password"
+                return null
+            }
+            val email = binding.signupEmail.text.toString()
+            //Check email already exists
+            val name = binding.signupName.text.toString()
+            val surname = binding.signupSurname.text.toString()
+            val phone = binding.signupPhone.text.toString().toInt()
+            val dni = binding.signupDni.text.toString()
+            val hash = hashPassword(password, ((random()*100).toString()))
+            return User(0, name, surname, email, phone, dni, hash)
+        }catch (e:Exception){
+            message.text = "Wrong Parameters"
+            return null
+        }
     }
 
     private fun hashPassword(password: String, salt: String): String{
