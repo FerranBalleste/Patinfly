@@ -1,7 +1,6 @@
 package com.example.patinfly.repositories
 
 import android.content.Context
-import android.util.Log
 import com.example.patinfly.base.AppConfig
 import com.example.patinfly.model.*
 
@@ -9,21 +8,21 @@ import com.example.patinfly.model.*
 class HistoryRepository {
     companion object {
 
-        fun activeHistoryList(context: Context, resource: String): List<HistoryElement> {
-            val historyElements: HistoryElements = activeHistory(context, resource)
+        /*fun activeHistoryList(context: Context, resource: String): List<HistoryElement> {
+            val historyElements: Rents = activeHistory(context, resource)
             return historyElements.historyElements
-        }
+        }*/
 
-        fun activeHistory(context: Context, resource: String): HistoryElements {
-            val historyElements: HistoryElements
+        fun activeHistory(context: Context, resource: String): Rents {
+            val historyElements: Rents
             val jsonResource: String? = AssetsProvider.getJsonDataFromRawAsset(context, resource)
             jsonResource.let {
-                historyElements = HistoryElementParser.parseFromJson(jsonResource!!)
+                historyElements = RentParser.parseFromJson(jsonResource!!)
             }
             return historyElements
         }
 
-        fun activeHistory(context: Context): HistoryElements {
+        fun activeHistory(context: Context): Rents {
             val resource: String = AppConfig.DEFAULT_HISTORY_RAW_JSON_FILE
             return activeHistory(context, resource)
         }

@@ -6,7 +6,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.patinfly.NavigationDrawerActivity
 import com.example.patinfly.R
@@ -53,16 +55,16 @@ class ScooterRecyclerViewAdapter(private val scooters: Scooters) :
             // Get element from your dataset at this position and replace the
             // contents of the view with that element
             viewHolder.name.text = scooters.scooters.get(position).name
-            viewHolder.lat.text = scooters.scooters.get(position).lat
-            viewHolder.lon.text = scooters.scooters.get(position).lon
-            viewHolder.image.setImageResource(when (scooters.scooters.get(position).battery){
-                "0" -> R.drawable.outline_battery_0_bar_24
-                "1" -> R.drawable.outline_battery_1_bar_24
-                "2" -> R.drawable.outline_battery_2_bar_24
-                "3" -> R.drawable.outline_battery_3_bar_24
-                "4" -> R.drawable.outline_battery_5_bar_24
-                "5" -> R.drawable.outline_battery_full_24
-                "6" -> R.drawable.outline_battery_0_bar_24
+            viewHolder.lat.text = scooters.scooters.get(position).latitude.toString()
+            viewHolder.lon.text = scooters.scooters.get(position).longitude.toString()
+            viewHolder.image.setImageResource(when ((scooters.scooters.get(position).batteryLevel).toInt()*6/100){
+                0 -> R.drawable.outline_battery_0_bar_24
+                1 -> R.drawable.outline_battery_1_bar_24
+                2 -> R.drawable.outline_battery_2_bar_24
+                3 -> R.drawable.outline_battery_3_bar_24
+                4 -> R.drawable.outline_battery_5_bar_24
+                5 -> R.drawable.outline_battery_full_24
+                6 -> R.drawable.outline_battery_0_bar_24
                 else -> R.drawable.outline_battery_0_bar_24
             })
 

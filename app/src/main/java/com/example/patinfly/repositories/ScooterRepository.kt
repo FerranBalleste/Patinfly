@@ -2,9 +2,9 @@ package com.example.patinfly.repositories
 
 import android.content.Context
 import com.example.patinfly.base.AppConfig
-import com.example.patinfly.model.Scooter
 import com.example.patinfly.model.ScooterParser
 import com.example.patinfly.model.Scooters
+import com.example.patinfly.persitence.Scooter
 
 
 class ScooterRepository {

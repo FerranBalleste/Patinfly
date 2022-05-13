@@ -1,4 +1,4 @@
-{ "historyElements": [
+{ "rents": [
   {"name":  "H001", "uuid": "HTGN-00001", "startTime": "18-10-2019 22:00:06", "endTime": "18-10-2019 22:00:06", "duration": "6", "price": "6.03", "distance":  "5.6"},
   {"name":  "H002", "uuid": "HTGN-00002", "startTime": "17-10-2019 22:00:06", "endTime": "18-10-2019 22:00:06", "duration": "6", "price": "6.03", "distance":  "5.6"},
   {"name":  "H003", "uuid": "HTGN-00003", "startTime": "18-10-2019 22:00:06", "endTime": "18-10-2019 22:00:06", "duration": "6", "price": "6.03", "distance":  "5.6"},

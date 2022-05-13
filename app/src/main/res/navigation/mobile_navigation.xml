@@ -13,7 +13,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.patinfly.fragments.HomeFragment"
         android:label="Scooters"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_detailsFragment"
+            app:destination="@id/detailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/historyFragment"
         android:name="com.example.patinfly.fragments.HistoryFragment"
@@ -28,10 +32,14 @@
         android:id="@+id/rentFragment"
         android:name="com.example.patinfly.fragments.RentFragment"
         android:label="fragment_rent"
-        tools:layout="@layout/fragment_history" />
+        tools:layout="@layout/fragment_rent" />
     <fragment
         android:id="@+id/detailsFragment"
         android:name="com.example.patinfly.fragments.DetailsFragment"
         android:label="fragment_details"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <action
+            android:id="@+id/action_detailsFragment_to_rentFragment"
+            app:destination="@id/rentFragment" />
+    </fragment>
 </navigation>

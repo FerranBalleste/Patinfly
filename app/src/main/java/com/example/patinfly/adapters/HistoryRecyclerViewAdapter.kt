@@ -7,10 +7,10 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.patinfly.R
-import com.example.patinfly.model.HistoryElements
+import com.example.patinfly.model.Rents
 
 
-class HistoryRecyclerViewAdapter(private val historyElements: HistoryElements) :
+class HistoryRecyclerViewAdapter(private val rents: Rents) :
         RecyclerView.Adapter<HistoryRecyclerViewAdapter.ViewHolder>() {
 
         /**
@@ -53,12 +53,12 @@ class HistoryRecyclerViewAdapter(private val historyElements: HistoryElements) :
 
             // Get element from your dataset at this position and replace the
             // contents of the view with that element
-            viewHolder.name.text = historyElements.historyElements.get(position).name
-            viewHolder.startTime.text = historyElements.historyElements.get(position).startTime
-            viewHolder.endTime.text = historyElements.historyElements.get(position).endTime
-            viewHolder.duration.text = historyElements.historyElements.get(position).duration
-            viewHolder.distance.text = historyElements.historyElements.get(position).distance
-            viewHolder.price.text = historyElements.historyElements.get(position).price
+            viewHolder.name.text = rents.rents.get(position).name
+            viewHolder.startTime.text = rents.rents.get(position).startTime
+            viewHolder.endTime.text = rents.rents.get(position).endTime
+            viewHolder.duration.text = rents.rents.get(position).duration
+            viewHolder.distance.text = rents.rents.get(position).distance
+            viewHolder.price.text = rents.rents.get(position).price
 
             viewHolder.root.setOnClickListener {
                 Toast.makeText(viewHolder.root.context,
@@ -68,6 +68,6 @@ class HistoryRecyclerViewAdapter(private val historyElements: HistoryElements) :
         }
 
         // Return the size of your dataset (invoked by the layout manager)
-        override fun getItemCount() = historyElements.historyElements.size
+        override fun getItemCount() = rents.rents.size
 
     }
