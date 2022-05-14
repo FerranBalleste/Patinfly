@@ -12,6 +12,8 @@ import android.widget.TextView
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
 import androidx.fragment.app.replace
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.example.patinfly.R
 import com.example.patinfly.databinding.FragmentDetailsBinding
 
@@ -27,36 +29,31 @@ class DetailsFragment: Fragment() {
         binding = FragmentDetailsBinding.inflate(layoutInflater)
         val view = binding.root
 
-        arguments?.let {
-            binding.detailsName.text = it.getString("name")
-            binding.detailsLat.text = it.getDouble("lat").toString()
-            binding.detailsLon.text = it.getDouble("lon").toString()
-            binding.detailsDate.text = it.getString("date")
-            Log.i("SCOOTER DETAILS DATE", it.getDouble("date").toString())
-            binding.detailsDistance.text = it.getDouble("distance").toString()
-            Log.i("SCOOTER DETAILS BATTERY", it.getDouble("battery").toString())
-            binding.detailsImage.setImageResource(when (it.getDouble("battery").toInt()*5/100){
-                0 -> R.drawable.outline_battery_0_bar_24
-                1 -> R.drawable.outline_battery_1_bar_24
-                2 -> R.drawable.outline_battery_2_bar_24
-                3 -> R.drawable.outline_battery_3_bar_24
-                4 -> R.drawable.outline_battery_5_bar_24
-                5 -> R.drawable.outline_battery_full_24
-                6 -> R.drawable.outline_battery_0_bar_24
-                else -> R.drawable.outline_battery_0_bar_24
-            })
-        }
+        val args: DetailsFragmentArgs by navArgs()
+        binding.detailsName.text = args.name
+        binding.detailsLat.text = args.latitude
+        binding.detailsLon.text = args.longitude
+        binding.detailsDate.text = args.date
+        binding.detailsDistance.text = args.distance
+        binding.detailsImage.setImageResource(when (args.battery.toDouble().toInt()*5/100){
+            0 -> R.drawable.outline_battery_0_bar_24
+            1 -> R.drawable.outline_battery_1_bar_24
+            2 -> R.drawable.outline_battery_2_bar_24
+            3 -> R.drawable.outline_battery_3_bar_24
+            4 -> R.drawable.outline_battery_5_bar_24
+            5 -> R.drawable.outline_battery_full_24
+            6 -> R.drawable.outline_battery_0_bar_24
+            else -> R.drawable.outline_battery_0_bar_24
+        })
+        val navController = this.findNavController()
 
         binding.detailsButtonReturn.setOnClickListener{
-            parentFragmentManager.popBackStack("home", FragmentManager.POP_BACK_STACK_INCLUSIVE)
+            navController.popBackStack()
         }
 
         binding.detailsButtonRent.setOnClickListener{
-            parentFragmentManager.commit {
-                replace<RentFragment>(R.id.nav_host_fragment_content_drawer)
-                setReorderingAllowed(true)
-                addToBackStack("home")
-            }
+            val action = DetailsFragmentDirections.actionDetailsFragmentToRentFragment(args.name)
+            navController.navigate(action)
         }
 
         return view

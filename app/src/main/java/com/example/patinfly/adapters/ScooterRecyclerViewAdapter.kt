@@ -9,21 +9,20 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.commit
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.patinfly.NavigationDrawerActivity
 import com.example.patinfly.R
 import com.example.patinfly.fragments.DetailsFragment
+import com.example.patinfly.fragments.DetailsFragmentDirections
+import com.example.patinfly.fragments.HomeFragmentDirections
 import com.example.patinfly.model.Scooters
 
 
-class ScooterRecyclerViewAdapter(private val scooters: Scooters) :
+class ScooterRecyclerViewAdapter(private val scooters: Scooters, private val navController: NavController) :
         RecyclerView.Adapter<ScooterRecyclerViewAdapter.ViewHolder>() {
 
-        /**
-         * Provide a reference to the type of views that you are using
-         * (custom ViewHolder).
-         */
         class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val name: TextView
             val lat: TextView
@@ -32,7 +31,6 @@ class ScooterRecyclerViewAdapter(private val scooters: Scooters) :
             val root: View
 
             init {
-                // Define click listener for the ViewHolder's View.
                 name = view.findViewById(R.id.sitem_name)
                 lat = view.findViewById(R.id.sitem_lat)
                 lon = view.findViewById(R.id.sitem_lon)
@@ -52,13 +50,12 @@ class ScooterRecyclerViewAdapter(private val scooters: Scooters) :
 
         // Replace the contents of a view (invoked by the layout manager)
         override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
+            val scooter = scooters.scooters.get(position)
 
-            // Get element from your dataset at this position and replace the
-            // contents of the view with that element
-            viewHolder.name.text = scooters.scooters.get(position).name
-            viewHolder.lat.text = scooters.scooters.get(position).latitude.toString()
-            viewHolder.lon.text = scooters.scooters.get(position).longitude.toString()
-            viewHolder.image.setImageResource(when ((scooters.scooters.get(position).battery_level).toInt()*5/100){
+            viewHolder.name.text = scooter.name
+            viewHolder.lat.text = scooter.latitude.toString()
+            viewHolder.lon.text = scooter.longitude.toString()
+            viewHolder.image.setImageResource(when ((scooter.battery_level).toInt()*5/100){
                 0 -> R.drawable.outline_battery_0_bar_24
                 1 -> R.drawable.outline_battery_1_bar_24
                 2 -> R.drawable.outline_battery_2_bar_24
@@ -70,21 +67,18 @@ class ScooterRecyclerViewAdapter(private val scooters: Scooters) :
             })
 
             viewHolder.root.setOnClickListener {
-                //Toast.makeText(viewHolder.root.context, "Row selected %d".format(position), Toast.LENGTH_LONG).show()
-                val context: Context = viewHolder.root.context
-                if(context is NavigationDrawerActivity) {
-                    context.supportFragmentManager.commit {
-                        val fragment = DetailsFragment()
-                        fragment.arguments = scooters.scooters.get(position).bundle
-                        replace(R.id.nav_host_fragment_content_drawer, fragment)
-                        setReorderingAllowed(true)
-                        addToBackStack("home")
-                    }
-                }
+                val action = HomeFragmentDirections.actionHomeFragmentToDetailsFragment(
+                    scooter.name,
+                    scooter.latitude.toString(),
+                    scooter.longitude.toString(),
+                    scooter.km_use.toString(),
+                    scooter.date_last_maintenance!!,
+                    scooter.battery_level.toString()
+                )
+                navController.navigate(action)
             }
         }
 
         // Return the size of your dataset (invoked by the layout manager)
         override fun getItemCount() = scooters.scooters.size
-
     }

@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.patinfly.R
@@ -34,13 +35,14 @@ class HomeFragment : Fragment() {
         val scooters = DevUtils.getScooters(scooterDao)
 
         //Navigation
-        val navController = activity?.findNavController(R.id.nav_host_fragment_content_drawer)
+        //val navController = activity?.findNavController(R.id.nav_host_fragment_content_drawer)
+        val navController = this.findNavController()
 
         //Recycler
         scooterRecyclerView = view.findViewById(R.id.home_recycler_view)
         scooterRecyclerView.setHasFixedSize(true)                                                   // Increase performance when the size is static
         scooterRecyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)       // Our RecyclerView is using the linear layout manager
-        scooterRecyclerView.adapter = ScooterRecyclerViewAdapter(scooters)   // Set adapter
+        scooterRecyclerView.adapter = ScooterRecyclerViewAdapter(scooters, navController)   // Set adapter
 
         return view
     }
