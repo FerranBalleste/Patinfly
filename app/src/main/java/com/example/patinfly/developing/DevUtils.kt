@@ -108,6 +108,16 @@ class DevUtils {
             })
         }
 
+        fun insertRent(rentDao: RentDao, rent: Rent){
+            Executors.newSingleThreadExecutor().execute(Runnable {
+                try {
+                    rentDao.insertAll(rent)
+                }catch (e: SQLiteConstraintException){
+                    //Log.d(MainActivity::class.simpleName,"Unique value error")
+                }
+            })
+        }
+
         fun getRents(rentDao: RentDao): Rents{
             val executor = Executors.newSingleThreadExecutor()
             var rents = Rents()

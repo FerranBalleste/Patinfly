@@ -46,6 +46,8 @@ class LoginActivity : AppCompatActivity() {
         val username = sharedPref.getString(getString(R.string.preference_key_login_email), "")
         binding.loginEmail.setText(username)
 
+        startDatabase()
+
         //Buttons
         binding.loginSignupbutton.setOnClickListener{
             val intent = Intent(this, SignupActivity::class.java)
@@ -75,17 +77,14 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
+    private fun startDatabase(){
         val database = AppDatabase.getInstance(this)
-        userDao = database.userDao()
-        fillDatabase(database.scooterDao(), database.rentDao())
-    }
-
-    private fun fillDatabase(scooterDao: ScooterDao, rentDao: RentDao){
         val scooters: Scooters = ScooterRepository.activeScooters(this, AppConfig.DEFAULT_SCOOTER_RAW_JSON_FILE)
-        DevUtils.insertScooters(scooterDao, scooters)
         val rents: Rents = HistoryRepository.activeHistory(this, AppConfig.DEFAULT_HISTORY_RAW_JSON_FILE)
+        userDao = database.userDao()
+        val scooterDao = database.scooterDao()
+        val rentDao = database.rentDao()
+        DevUtils.insertScooters(scooterDao, scooters)
         DevUtils.insertRents(rentDao, rents)
     }
 
