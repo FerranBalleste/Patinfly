@@ -19,7 +19,6 @@ class DevUtils {
         //Users
         fun insertUser(userDao: UserDao, user: User){
             Executors.newSingleThreadExecutor().execute(Runnable {
-                //val user:User = User(0, "Tomas", "GiS")
                 try {
                     userDao.insertAll(user)
                 }catch (e: SQLiteConstraintException){
@@ -30,31 +29,23 @@ class DevUtils {
 
         fun verifyUser(userDao: UserDao, email: String, password:String): Boolean{
             var user: User
-            Log.i("VERIFY USER", "INICI")
             val executor = Executors.newSingleThreadExecutor()
             val future: Future<Boolean> = executor.submit(Callable<Boolean> {
                 var verifyPassword = false
                 try {
                     user = userDao.findByEmail(email)
-                    Log.i("VERIFY USER", user.password.toString())
-                    Log.i("VERIFY USER", password)
                     verifyPassword = verifyPassword(user.password, password)
-                    Log.i("VERIFY USER RESULT 1", verifyPassword.toString())
                 } catch (e: SQLiteConstraintException) {
                     Log.i("VERIFY USER", "e.toString()")
                 }
                 verifyPassword
             })
-            val result = future.get()
-            Log.i("VERIFY USER RESULT 2", result.toString())
-            return result
+            return future.get()
         }
 
         private fun verifyPassword(encodedHash: String, password: String): Boolean{
             val argon2Kt = Argon2Kt()
-            Log.i("VERIFY USER", "Verifying PASSWORD")
             val result = argon2Kt.verify(Argon2Mode.ARGON2_I, encodedHash, password.toByteArray())
-            Log.i("VERIFY USER", "Result: " + result.toString())
             return result
         }
 
@@ -78,11 +69,26 @@ class DevUtils {
         fun insertScooters(scooterDao: ScooterDao, scooters: Scooters){
             Executors.newSingleThreadExecutor().execute(Runnable {
                 try {
-                    scooterDao.insertAll(*scooters.scooters.toArray() as Array<out Scooter>)
+                    scooterDao.insertAll(*scooters.scooters.toTypedArray())
                 }catch (e: SQLiteConstraintException){
                     //Log.d(MainActivity::class.simpleName,"Unique value error")
                 }
             })
+        }
+
+        fun getScooters(scooterDao: ScooterDao): Scooters{
+            val executor = Executors.newSingleThreadExecutor()
+            var scooters = Scooters()
+            val future: Future<Scooters> = executor.submit(Callable<Scooters> {
+                try {
+                    val scooterList = scooterDao.getAll()
+                    scooters.scooters = LinkedList(scooterList)
+                } catch (e: SQLiteConstraintException) {
+                    Log.i("VERIFY USER", "e.toString()")
+                }
+                scooters
+            })
+            return future.get()
         }
 
         fun deleteAllScooters(scooterDao: ScooterDao){
@@ -95,11 +101,26 @@ class DevUtils {
         fun insertRents(rentDao: RentDao, rents: Rents){
             Executors.newSingleThreadExecutor().execute(Runnable {
                 try {
-                    rentDao.insertAll(*rents.rents.toArray() as Array<out Rent>)
+                    rentDao.insertAll(*rents.rents.toTypedArray())
                 }catch (e: SQLiteConstraintException){
                     //Log.d(MainActivity::class.simpleName,"Unique value error")
                 }
             })
+        }
+
+        fun getRents(rentDao: RentDao): Rents{
+            val executor = Executors.newSingleThreadExecutor()
+            var rents = Rents()
+            val future: Future<Rents> = executor.submit(Callable<Rents> {
+                try {
+                    val rentList = rentDao.getAll()
+                    rents.rents = LinkedList(rentList)
+                } catch (e: SQLiteConstraintException) {
+                    Log.i("VERIFY USER", "e.toString()")
+                }
+                rents
+            })
+            return future.get()
         }
 
         fun deleteAllRents(rentDao: RentDao){
@@ -107,8 +128,6 @@ class DevUtils {
                 rentDao.deleteAll()
             })
         }
-
-        //Other
 
     }
 

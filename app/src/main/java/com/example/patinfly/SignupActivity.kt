@@ -66,9 +66,6 @@ class SignupActivity : AppCompatActivity() {
         val hashResult : Argon2KtResult = argon2Kt.hash(Argon2Mode.ARGON2_I, password.toByteArray(), salt.toByteArray())
         val verification = argon2Kt.verify(Argon2Mode.ARGON2_I, hashResult.encodedOutputAsString(), password.toByteArray())
         Log.i("SIGNUP HASH", "Verification Signup:" + verification.toString())
-        Log.i("SIGNUP HASH", "HASH Result" + hashResult.encodedOutputAsString())
-        Log.i("SIGNUP HASH", "Password" + password)
-        Log.i("SIGNUP HASH", "Salt" + salt)
         return hashResult.encodedOutputAsString()
     }
 }

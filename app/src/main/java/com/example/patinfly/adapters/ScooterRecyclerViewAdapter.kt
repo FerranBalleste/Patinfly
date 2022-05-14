@@ -58,7 +58,6 @@ class ScooterRecyclerViewAdapter(private val scooters: Scooters) :
             viewHolder.name.text = scooters.scooters.get(position).name
             viewHolder.lat.text = scooters.scooters.get(position).latitude.toString()
             viewHolder.lon.text = scooters.scooters.get(position).longitude.toString()
-            Log.i("SCOOTER BATTERY CALC", ((scooters.scooters.get(position).battery_level).toInt()*5/100).toString())
             viewHolder.image.setImageResource(when ((scooters.scooters.get(position).battery_level).toInt()*5/100){
                 0 -> R.drawable.outline_battery_0_bar_24
                 1 -> R.drawable.outline_battery_1_bar_24
@@ -77,7 +76,6 @@ class ScooterRecyclerViewAdapter(private val scooters: Scooters) :
                     context.supportFragmentManager.commit {
                         val fragment = DetailsFragment()
                         fragment.arguments = scooters.scooters.get(position).bundle
-                        Log.i("SCOOTER FULL", scooters.scooters.get(position).toString())
                         replace(R.id.nav_host_fragment_content_drawer, fragment)
                         setReorderingAllowed(true)
                         addToBackStack("home")

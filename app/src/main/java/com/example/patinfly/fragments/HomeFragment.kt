@@ -6,12 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.patinfly.R
 import com.example.patinfly.adapters.ScooterRecyclerViewAdapter
 import com.example.patinfly.base.AppConfig
+import com.example.patinfly.developing.DevUtils
 import com.example.patinfly.model.Scooters
+import com.example.patinfly.persitence.AppDatabase
 import com.example.patinfly.repositories.ScooterRepository
 
 class HomeFragment : Fragment() {
@@ -25,8 +28,15 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
         // scooterElements
-        val scooters: Scooters = ScooterRepository.activeScooters(requireActivity(), AppConfig.DEFAULT_SCOOTER_RAW_JSON_FILE)
-        Log.i("SCOOTERS HOME", scooters.scooters.toString())
+        //val scooters: Scooters = ScooterRepository.activeScooters(requireActivity(), AppConfig.DEFAULT_SCOOTER_RAW_JSON_FILE)
+        val database = AppDatabase.getInstance(context!!)
+        val scooterDao = database.scooterDao()
+        val scooters = DevUtils.getScooters(scooterDao)
+
+        //Navigation
+        val navController = activity?.findNavController(R.id.nav_host_fragment_content_drawer)
+
+        //Recycler
         scooterRecyclerView = view.findViewById(R.id.home_recycler_view)
         scooterRecyclerView.setHasFixedSize(true)                                                   // Increase performance when the size is static
         scooterRecyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)       // Our RecyclerView is using the linear layout manager

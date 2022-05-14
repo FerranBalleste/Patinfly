@@ -59,12 +59,12 @@ class HistoryRecyclerViewAdapter(private val rents: Rents) :
             viewHolder.duration.text = rents.rents.get(position).duration
             viewHolder.distance.text = rents.rents.get(position).distance
             viewHolder.price.text = rents.rents.get(position).price
-
+            /*
             viewHolder.root.setOnClickListener {
                 Toast.makeText(viewHolder.root.context,
                     "Row selected %d".format(position),
                     Toast.LENGTH_LONG).show()
-            }
+            }*/
         }
 
         // Return the size of your dataset (invoked by the layout manager)

@@ -10,10 +10,17 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.preference.PreferenceManager
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
+import com.example.patinfly.base.AppConfig
 import com.example.patinfly.databinding.ActivityLoginBinding
 import com.example.patinfly.developing.DevUtils
+import com.example.patinfly.model.Rents
+import com.example.patinfly.model.Scooters
 import com.example.patinfly.persitence.AppDatabase
+import com.example.patinfly.persitence.RentDao
+import com.example.patinfly.persitence.ScooterDao
 import com.example.patinfly.persitence.UserDao
+import com.example.patinfly.repositories.HistoryRepository
+import com.example.patinfly.repositories.ScooterRepository
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
@@ -48,7 +55,6 @@ class LoginActivity : AppCompatActivity() {
         binding.loginButton.setOnClickListener{
             val email = binding.loginEmail.text.toString()
             val password = binding.loginPassword.text.toString()
-            Log.i("VERIFY USER", "$email $password")
 
             val correctPwd = DevUtils.verifyUser(userDao, email, password)
             if(!correctPwd){
@@ -73,6 +79,14 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         val database = AppDatabase.getInstance(this)
         userDao = database.userDao()
+        fillDatabase(database.scooterDao(), database.rentDao())
+    }
+
+    private fun fillDatabase(scooterDao: ScooterDao, rentDao: RentDao){
+        val scooters: Scooters = ScooterRepository.activeScooters(this, AppConfig.DEFAULT_SCOOTER_RAW_JSON_FILE)
+        DevUtils.insertScooters(scooterDao, scooters)
+        val rents: Rents = HistoryRepository.activeHistory(this, AppConfig.DEFAULT_HISTORY_RAW_JSON_FILE)
+        DevUtils.insertRents(rentDao, rents)
     }
 
     private fun themeSettings(){
