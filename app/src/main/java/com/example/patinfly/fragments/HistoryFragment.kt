@@ -14,7 +14,6 @@ import com.example.patinfly.model.Rents
 import com.example.patinfly.repositories.HistoryRepository
 
 class HistoryFragment : Fragment() {
-
     private lateinit var historyRecyclerView: RecyclerView
 
     override fun onCreateView(

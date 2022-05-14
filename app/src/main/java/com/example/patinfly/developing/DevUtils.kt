@@ -3,11 +3,13 @@ package com.example.patinfly.developing
 import android.database.sqlite.SQLiteConstraintException
 import android.util.Log
 import android.widget.TextView
+import com.example.patinfly.databinding.FragmentProfileBinding
 import com.example.patinfly.model.Rents
 import com.example.patinfly.model.Scooters
 import com.example.patinfly.persitence.*
 import com.lambdapioneer.argon2kt.Argon2Kt
 import com.lambdapioneer.argon2kt.Argon2Mode
+import java.util.*
 import java.util.concurrent.Callable
 import java.util.concurrent.Executors
 import java.util.concurrent.Future
@@ -56,6 +58,16 @@ class DevUtils {
             return result
         }
 
+        fun updateProfileView(userDao: UserDao, binding: FragmentProfileBinding, email: String){
+            Executors.newSingleThreadExecutor().execute(Runnable {
+                val user = userDao.findByEmail(email)
+                binding.profileEmail.text = user.email
+                binding.profileName.text = user.name
+                binding.profileSurname.text = user.surname
+                binding.profilePhone.text = user.phone.toString()
+            })
+        }
+
         fun deleteAllUsers(userDao: UserDao){
             Executors.newSingleThreadExecutor().execute(Runnable {
                 userDao.deleteAll()
@@ -90,31 +102,14 @@ class DevUtils {
             })
         }
 
-        /*
-        fun plotDBUsers(userDao: UserDao) {
-            var users: List<User> = LinkedList<User>()
-
+        fun deleteAllRents(rentDao: RentDao){
             Executors.newSingleThreadExecutor().execute(Runnable {
-                users = userDao.getAll()
-                for (user in users) {
-                    Log.d(
-                        DevUtils::class.java.simpleName,
-                        "User: (%d) %s %s".format(user.uid, user.name, user.surname)
-                    )
-                }
+                rentDao.deleteAll()
             })
         }
-        fun updateView(userDao: UserDao, view:TextView){
-            var users: List<User> = LinkedList<User>()
 
-            Executors.newSingleThreadExecutor().execute(Runnable {
-                users = userDao.getAll()
-                for (user in users) {
-                    view.setText("User: (%d) %s %s".format(user.uid, user.name, user.surname))
-                }
-            })
-        }
-        */
+        //Other
+
     }
 
 }
