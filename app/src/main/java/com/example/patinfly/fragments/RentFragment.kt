@@ -1,12 +1,17 @@
 package com.example.patinfly.fragments
 
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys
+import com.example.patinfly.R
 import com.example.patinfly.databinding.FragmentRentBinding
 import com.example.patinfly.developing.DevUtils
 import com.example.patinfly.persitence.AppDatabase
@@ -38,12 +43,15 @@ class RentFragment : Fragment() {
         binding.rentButton.setOnClickListener{
             val database = AppDatabase.getInstance(context!!)
             val rentDao = database.rentDao()
-
-            DevUtils.insertRent(rentDao, createRent(args.name, startTime, startTimeMillis))
+            val rent = createRent(args.name, startTime, startTimeMillis)
+            Log.i("RENT FRAGMENT", rent.toString())
+            DevUtils.insertRent(rentDao, rent)
 
             val navController = this.findNavController()
             navController.popBackStack()
         }
+
+        binding.rentCode.text = Random().nextInt(999999999).toString()
 
         return view
     }
@@ -54,13 +62,15 @@ class RentFragment : Fragment() {
         val price: String
         Calendar.getInstance().let {
             endTime = dateFormat.format(it.time)
-            var duration = (Calendar.getInstance().timeInMillis - startMillis)/60000
+            val duration = (Calendar.getInstance().timeInMillis - startMillis)/60000
             durationString = duration.toString() + " min"
-            price = (duration.toDouble()*10).toString() + "€"
+            price = (duration.toDouble()/10 + 2).toString() + "€"
         }
         val distance = Random().nextInt(50).toString() + "km"
 
-        return Rent(name+startTime, name, startTime, endTime, durationString, price, distance)
+        val sharedPref = DevUtils.getEncryptedPrefs(context!!)
+        val username = sharedPref.getString(getString(R.string.preference_key_login_email), "")
+        return Rent(name+startTime, name, startTime, endTime, durationString, price, distance, username!!)
     }
 
 }

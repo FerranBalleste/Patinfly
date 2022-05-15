@@ -17,7 +17,7 @@
             android:id="@+id/hitem_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:rotation="+40"
+            android:rotation="+30"
             android:text=""
             android:textColor="@color/main_text"
             android:textSize="20sp"

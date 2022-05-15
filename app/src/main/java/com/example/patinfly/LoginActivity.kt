@@ -42,7 +42,7 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         //Email Preference
-        val sharedPref = getEncryptedPrefs()
+        val sharedPref = DevUtils.getEncryptedPrefs(this)
         val username = sharedPref.getString(getString(R.string.preference_key_login_email), "")
         binding.loginEmail.setText(username)
 
@@ -94,16 +94,5 @@ class LoginActivity : AppCompatActivity() {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         else if(pref == "Dark")
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-    }
-
-    private fun getEncryptedPrefs(): SharedPreferences{
-        val masterKeyAlias: String = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
-        return EncryptedSharedPreferences.create(
-            "secret_shared_prefs",
-            masterKeyAlias,
-            this,
-            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
-            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
-        )
     }
 }

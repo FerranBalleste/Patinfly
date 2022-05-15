@@ -1,6 +1,7 @@
 package com.example.patinfly.fragments
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -29,7 +30,10 @@ class HistoryFragment : Fragment() {
         //val historyElements: Rents = HistoryRepository.activeHistory(requireActivity(), AppConfig.DEFAULT_HISTORY_RAW_JSON_FILE)
         val database = AppDatabase.getInstance(context!!)
         val rentDao = database.rentDao()
-        val rents = DevUtils.getRents(rentDao)
+        val sharedPref = DevUtils.getEncryptedPrefs(context!!)
+        val email = sharedPref.getString(getString(R.string.preference_key_login_email), "")
+        Log.i("HISTORY FRAGMENT", email!!)
+        val rents = DevUtils.getRents(rentDao, email!!)
 
         // RecyclerView
         historyRecyclerView = view.findViewById(R.id.history_recycler_view)

@@ -1,8 +1,12 @@
 package com.example.patinfly.developing
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.database.sqlite.SQLiteConstraintException
 import android.util.Log
 import android.widget.TextView
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys
 import com.example.patinfly.databinding.FragmentProfileBinding
 import com.example.patinfly.model.Rents
 import com.example.patinfly.model.Scooters
@@ -16,6 +20,18 @@ import java.util.concurrent.Future
 
 class DevUtils {
     companion object{
+        //Encrypted SharedPrefs
+        fun getEncryptedPrefs(context: Context): SharedPreferences {
+            val masterKeyAlias: String = MasterKeys.getOrCreate(MasterKeys.AES256_GCM_SPEC)
+            return EncryptedSharedPreferences.create(
+                "secret_shared_prefs",
+                masterKeyAlias,
+                context,
+                EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+                EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+            )
+        }
+
         //Users
         fun insertUser(userDao: UserDao, user: User){
             Executors.newSingleThreadExecutor().execute(Runnable {
@@ -81,7 +97,7 @@ class DevUtils {
             var scooters = Scooters()
             val future: Future<Scooters> = executor.submit(Callable<Scooters> {
                 try {
-                    val scooterList = scooterDao.getAll()
+                    val scooterList = scooterDao.getActive()
                     scooters.scooters = LinkedList(scooterList)
                 } catch (e: SQLiteConstraintException) {
                     Log.i("VERIFY USER", "e.toString()")
@@ -118,12 +134,12 @@ class DevUtils {
             })
         }
 
-        fun getRents(rentDao: RentDao): Rents{
+        fun getRents(rentDao: RentDao, email: String): Rents{
             val executor = Executors.newSingleThreadExecutor()
             var rents = Rents()
             val future: Future<Rents> = executor.submit(Callable<Rents> {
                 try {
-                    val rentList = rentDao.getAll()
+                    val rentList = rentDao.getAllUser(email)
                     rents.rents = LinkedList(rentList)
                 } catch (e: SQLiteConstraintException) {
                     Log.i("VERIFY USER", "e.toString()")

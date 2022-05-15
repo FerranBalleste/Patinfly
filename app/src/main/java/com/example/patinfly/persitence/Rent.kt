@@ -13,5 +13,6 @@ data class Rent(
     @ColumnInfo(name = "end-time") val endTime: String,
     @ColumnInfo(name = "duration") val duration: String,
     @ColumnInfo(name = "price") val price: String,
-    @ColumnInfo(name = "distance") val distance: String
+    @ColumnInfo(name = "distance") val distance: String,
+    @ColumnInfo(name = "user") val user: String
 )

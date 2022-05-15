@@ -22,7 +22,6 @@ class ScooterRepository {
             jsonResource.let {
                 scooters = ScooterParser.parseFromJson(jsonResource!!)
             }
-            Log.i("SCOOTER FILE", scooters.scooters.toString())
             return scooters
         }
 
@@ -30,18 +29,6 @@ class ScooterRepository {
             val resource: String = AppConfig.DEFAULT_SCOOTER_RAW_JSON_FILE
             return ScooterRepository.activeScooters(context, resource)
         }
-        /*
-        fun activeScooters(): Scooters {
-            val scooters: Scooters = Scooters()
-            val uuidList: Array<String> =AppConfig.DEFAULT_SCOOTERS_ID_ARRAY
-            var scooter: Scooter
-            uuidList.forEach {
-                scooter = Scooter(uuid = it, name = it)
-                scooters.scooters.add(scooter)
-            }
 
-            return scooters
-        }
-         */
     }
 }

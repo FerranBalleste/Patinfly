@@ -7,7 +7,7 @@ interface ScooterDao {
     @Query("SELECT * FROM scooter")
     fun getAll(): List<Scooter>
 
-    @Query("SELECT * FROM scooter WHERE state LIKE 'ACTIVE'")
+    @Query("SELECT * FROM scooter WHERE state LIKE 'ACTIVE' AND on_rent = 0")
     fun getActive(): List<Scooter>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
