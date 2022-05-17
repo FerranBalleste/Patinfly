@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.database.sqlite.SQLiteConstraintException
 import android.util.Log
-import android.widget.TextView
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
 import com.example.patinfly.databinding.FragmentProfileBinding
@@ -34,23 +33,40 @@ class DevUtils {
 
         //Users
         fun insertUser(userDao: UserDao, user: User){
-            Executors.newSingleThreadExecutor().execute(Runnable {
+            Executors.newSingleThreadExecutor().execute {
                 try {
                     userDao.insertAll(user)
-                }catch (e: SQLiteConstraintException){
+                } catch (e: SQLiteConstraintException) {
                     //Log.d(MainActivity::class.simpleName,"Unique value error")
                 }
+            }
+        }
+
+        fun getUser(userDao: UserDao, email: String): User?{
+            var user: User?
+            val executor = Executors.newSingleThreadExecutor()
+            val future: Future<User?> = executor.submit(Callable<User?> {
+                user = try {
+                    userDao.findByEmail(email)
+                } catch (e: SQLiteConstraintException) {
+                    Log.i("VERIFY USER", "e.toString()")
+                    null
+                }
+                user
             })
+            return future.get()
         }
 
         fun verifyUser(userDao: UserDao, email: String, password:String): Boolean{
             var user: User
             val executor = Executors.newSingleThreadExecutor()
-            val future: Future<Boolean> = executor.submit(Callable<Boolean> {
+            val future: Future<Boolean> = executor.submit(Callable {
                 var verifyPassword = false
                 try {
                     user = userDao.findByEmail(email)
-                    verifyPassword = verifyPassword(user.password, password)
+                    user?.let {
+                        verifyPassword = verifyPassword(user.password, password)
+                    }
                 } catch (e: SQLiteConstraintException) {
                     Log.i("VERIFY USER", "e.toString()")
                 }
@@ -59,43 +75,53 @@ class DevUtils {
             return future.get()
         }
 
-        private fun verifyPassword(encodedHash: String, password: String): Boolean{
+        private fun verifyPassword(encodedHash: String, password: String): Boolean {
             val argon2Kt = Argon2Kt()
-            val result = argon2Kt.verify(Argon2Mode.ARGON2_I, encodedHash, password.toByteArray())
-            return result
+            return argon2Kt.verify(Argon2Mode.ARGON2_I, encodedHash, password.toByteArray())
         }
 
         fun updateProfileView(userDao: UserDao, binding: FragmentProfileBinding, email: String){
-            Executors.newSingleThreadExecutor().execute(Runnable {
+            Executors.newSingleThreadExecutor().execute {
                 val user = userDao.findByEmail(email)
-                binding.profileEmail.text = user.email
-                binding.profileName.text = user.name
-                binding.profileSurname.text = user.surname
-                binding.profilePhone.text = user.phone.toString()
-            })
+                binding.profileEmail.setText(user.email)
+                binding.profileName.setText(user.name)
+                binding.profileSurname.setText(user.surname)
+                binding.profilePhone.setText(user.phone.toString())
+            }
+        }
+
+        fun updateUser(userDao: UserDao, binding: FragmentProfileBinding, email: String){
+            Executors.newSingleThreadExecutor().execute {
+                val user = userDao.findByEmail(email)
+                user.email = binding.profileEmail.text.toString()
+                user.name = binding.profileName.text.toString()
+                user.surname = binding.profileSurname.text.toString()
+                user.phone = binding.profilePhone.text.toString().toInt()
+                userDao.updateUser(user)
+            }
         }
 
         fun deleteAllUsers(userDao: UserDao){
-            Executors.newSingleThreadExecutor().execute(Runnable {
+            Executors.newSingleThreadExecutor().execute {
                 userDao.deleteAll()
-            })
+            }
         }
 
         //Scooters
         fun insertScooters(scooterDao: ScooterDao, scooters: Scooters){
-            Executors.newSingleThreadExecutor().execute(Runnable {
+            Executors.newSingleThreadExecutor().execute {
                 try {
                     scooterDao.insertAll(*scooters.scooters.toTypedArray())
-                }catch (e: SQLiteConstraintException){
+                } catch (e: SQLiteConstraintException) {
                     //Log.d(MainActivity::class.simpleName,"Unique value error")
                 }
-            })
+            }
         }
 
         fun getScooters(scooterDao: ScooterDao): Scooters{
             val executor = Executors.newSingleThreadExecutor()
             var scooters = Scooters()
-            val future: Future<Scooters> = executor.submit(Callable<Scooters> {
+            val future: Future<Scooters> = executor.submit(Callable {
                 try {
                     val scooterList = scooterDao.getActive()
                     scooters.scooters = LinkedList(scooterList)
@@ -108,38 +134,38 @@ class DevUtils {
         }
 
         fun deleteAllScooters(scooterDao: ScooterDao){
-            Executors.newSingleThreadExecutor().execute(Runnable {
+            Executors.newSingleThreadExecutor().execute {
                 scooterDao.deleteAll()
-            })
+            }
         }
 
         //History
         fun insertRents(rentDao: RentDao, rents: Rents){
-            Executors.newSingleThreadExecutor().execute(Runnable {
+            Executors.newSingleThreadExecutor().execute {
                 try {
                     rentDao.insertAll(*rents.rents.toTypedArray())
-                }catch (e: SQLiteConstraintException){
+                } catch (e: SQLiteConstraintException) {
                     //Log.d(MainActivity::class.simpleName,"Unique value error")
                 }
-            })
+            }
         }
 
         fun insertRent(rentDao: RentDao, rent: Rent){
-            Executors.newSingleThreadExecutor().execute(Runnable {
+            Executors.newSingleThreadExecutor().execute {
                 try {
                     rentDao.insertAll(rent)
-                }catch (e: SQLiteConstraintException){
+                } catch (e: SQLiteConstraintException) {
                     //Log.d(MainActivity::class.simpleName,"Unique value error")
                 }
-            })
+            }
         }
 
-        fun getRents(rentDao: RentDao, email: String): Rents{
+        fun getRents(rentDao: RentDao, uuid: Long): Rents{
             val executor = Executors.newSingleThreadExecutor()
             var rents = Rents()
-            val future: Future<Rents> = executor.submit(Callable<Rents> {
+            val future: Future<Rents> = executor.submit(Callable {
                 try {
-                    val rentList = rentDao.getAllUser(email)
+                    val rentList = rentDao.getAllRents(uuid)
                     rents.rents = LinkedList(rentList)
                 } catch (e: SQLiteConstraintException) {
                     Log.i("VERIFY USER", "e.toString()")
@@ -149,10 +175,20 @@ class DevUtils {
             return future.get()
         }
 
-        fun deleteAllRents(rentDao: RentDao){
+        /*
+        fun updateRentEmails(rentDao: RentDao, previousEmail:String, newEmail:String){
             Executors.newSingleThreadExecutor().execute(Runnable {
-                rentDao.deleteAll()
+                val rentList = rentDao.findByEmail(previousEmail)
+                rentList.forEach(){ it.user = newEmail }
+                rentDao.updateRents(rentList)
             })
+        }
+        */
+
+        fun deleteAllRents(rentDao: RentDao){
+            Executors.newSingleThreadExecutor().execute {
+                rentDao.deleteAll()
+            }
         }
 
     }

@@ -18,4 +18,10 @@ interface ScooterDao {
 
     @Query ("DELETE FROM scooter")
     fun deleteAll()
+
+    @Update
+    fun updateScooter(scooter: Scooter)
+
+    @Update
+    fun updateScooters(scooters: List<Scooter>)
 }

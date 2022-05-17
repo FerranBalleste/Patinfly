@@ -64,9 +64,15 @@ class LoginActivity : AppCompatActivity() {
                 return@setOnClickListener
             }
 
-            val editor = sharedPref.edit()
-            editor.putString(getString(R.string.preference_key_login_email), email)
-            editor.apply()
+            val uuid = DevUtils.getUser(userDao, email)?.uuid
+            uuid?.let {
+                val editor = sharedPref.edit()
+                editor.putString(getString(R.string.preference_key_login_email), email)
+                editor.putLong("STORED_LOGIN_UUID", uuid)
+                editor.apply()
+            } ?: run{
+                return@setOnClickListener
+            }
 
             val tutorial = PreferenceManager.getDefaultSharedPreferences(this).getBoolean("tutorial_switch", true)
             val intent: Intent = if (tutorial)

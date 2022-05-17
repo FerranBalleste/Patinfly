@@ -7,8 +7,8 @@ interface RentDao {
     @Query("SELECT * FROM rent")
     fun getAll(): List<Rent>
 
-    @Query("SELECT * FROM rent WHERE user LIKE :user")
-    fun getAllUser(user: String): List<Rent>
+    @Query("SELECT * FROM rent WHERE user = :userUuid")
+    fun getAllRents(userUuid: Long): List<Rent>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertAll(vararg users: Rent)
@@ -18,4 +18,10 @@ interface RentDao {
 
     @Query ("DELETE FROM rent")
     fun deleteAll()
+
+    @Update
+    fun updateRent(rent: Rent)
+
+    @Update
+    fun updateRents(rents: List<Rent>)
 }

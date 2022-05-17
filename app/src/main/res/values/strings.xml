@@ -78,10 +78,18 @@
 
     <string name="preference_file_key">app_dict_shared_preference</string>
     <string name="preference_key_login_email">STORED_LOGIN_EMAIL</string>
+    <string name="preference_key_login_uuid">STORED_LOGIN_UUID</string>
     <string name="would_you_like_to_see_the_tutorial">Would you like to see the tutorial?</string>
     <string name="yes">Yes</string>
     <string name="no_don_t_ask_again">No, don\'t ask again</string>
     <string name="tutorial">Tutorial</string>
     <string name="finish_tutorial">Finish Tutorial</string>
+    <string name="john">John</string>
+    <string name="_644315099">644315099</string>
+    <string name="johndoe_gmail_com">johndoe@gmail.com</string>
+    <string name="doe">Doe</string>
+    <string name="togglebutton">ToggleButton</string>
+    <string name="edit_parameters">Edit Parameters</string>
+    <string name="save_parameters">Save Parameters</string>
 
 </resources>

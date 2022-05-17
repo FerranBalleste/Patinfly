@@ -1,17 +1,12 @@
 package com.example.patinfly.fragments
 
-import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import androidx.security.crypto.EncryptedSharedPreferences
-import androidx.security.crypto.MasterKeys
-import com.example.patinfly.R
 import com.example.patinfly.databinding.FragmentRentBinding
 import com.example.patinfly.developing.DevUtils
 import com.example.patinfly.persitence.AppDatabase
@@ -44,7 +39,6 @@ class RentFragment : Fragment() {
             val database = AppDatabase.getInstance(context!!)
             val rentDao = database.rentDao()
             val rent = createRent(args.name, startTime, startTimeMillis)
-            Log.i("RENT FRAGMENT", rent.toString())
             DevUtils.insertRent(rentDao, rent)
 
             val navController = this.findNavController()
@@ -69,8 +63,8 @@ class RentFragment : Fragment() {
         val distance = Random().nextInt(50).toString() + "km"
 
         val sharedPref = DevUtils.getEncryptedPrefs(context!!)
-        val username = sharedPref.getString(getString(R.string.preference_key_login_email), "")
-        return Rent(name+startTime, name, startTime, endTime, durationString, price, distance, username!!)
+        val uuid = sharedPref.getLong("STORED_LOGIN_UUID", 0)
+        return Rent(name+startTime, name, startTime, endTime, durationString, price, distance, uuid)
     }
 
 }

@@ -1,6 +1,6 @@
 { "rents": [
-  {"name":  "H001", "uuid": "HTGN-00001", "startTime": "18-10-2019 22:00:06", "endTime": "18-10-2019 22:00:06", "duration": "6", "price": "6.03", "distance":  "5.6", "user": "banana"},
-  {"name":  "H002", "uuid": "HTGN-00002", "startTime": "17-10-2019 22:00:06", "endTime": "18-10-2019 22:00:06", "duration": "6", "price": "6.03", "distance":  "5.6", "user": "AAAA"},
-  {"name":  "H003", "uuid": "HTGN-00003", "startTime": "18-10-2019 22:00:06", "endTime": "18-10-2019 22:00:06", "duration": "6", "price": "6.03", "distance":  "5.6", "user": "CCCCC"},
-  {"name":  "H004", "uuid": "HTGN-00004", "startTime": "19-10-2019 22:00:06", "endTime": "18-10-2019 22:00:06", "duration": "6", "price": "6.03", "distance":  "5.6", "user": "email@gmail.com"}
+  {"name":  "H001", "uuid": "HTGN-00001", "startTime": "18-10-2019 22:00:06", "endTime": "18-10-2019 22:00:06", "duration": "6", "price": "6.03", "distance":  "5.6", "user": 0},
+  {"name":  "H002", "uuid": "HTGN-00002", "startTime": "17-10-2019 22:00:06", "endTime": "18-10-2019 22:00:06", "duration": "6", "price": "6.03", "distance":  "5.6", "user": 1},
+  {"name":  "H003", "uuid": "HTGN-00003", "startTime": "18-10-2019 22:00:06", "endTime": "18-10-2019 22:00:06", "duration": "6", "price": "6.03", "distance":  "5.6", "user": 2},
+  {"name":  "H004", "uuid": "HTGN-00004", "startTime": "19-10-2019 22:00:06", "endTime": "18-10-2019 22:00:06", "duration": "6", "price": "6.03", "distance":  "5.6", "user": 3}
 ]}
