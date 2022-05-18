@@ -61,7 +61,7 @@
     <string name="last_mantenaince">Last Mantenaince:</string>
     <string name="location">Location:</string>
     <string name="_66_km">66 km</string>
-    <string name="_05_08_2021">05-08-2021</string>
+    <string name="_05_08_2021">05 08 2021</string>
     <string name="_41_1189_n">41.1189º N</string>
     <string name="_1_2445_e">1.2445º E</string>
     <string name="_0001">0001</string>
@@ -91,5 +91,13 @@
     <string name="togglebutton">ToggleButton</string>
     <string name="edit_parameters">Edit Parameters</string>
     <string name="save_parameters">Save Parameters</string>
+    <string name="change_password">Change password</string>
+    <string name="current_password">Current Password</string>
+    <string name="new_password">New Password</string>
+    <string name="repeat_new_password">Repeat New Password</string>
+    <string name="wrong_password">Wrong Password</string>
+    <string name="password_changed_correctly">Password changed correctly.</string>
+    <string name="wrong_parameters">Wrong Parameters</string>
+    <string name="introduce_same">Introduce the same password</string>
 
 </resources>

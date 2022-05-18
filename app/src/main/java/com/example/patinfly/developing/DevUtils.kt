@@ -11,13 +11,16 @@ import com.example.patinfly.model.Rents
 import com.example.patinfly.model.Scooters
 import com.example.patinfly.persitence.*
 import com.lambdapioneer.argon2kt.Argon2Kt
+import com.lambdapioneer.argon2kt.Argon2KtResult
 import com.lambdapioneer.argon2kt.Argon2Mode
 import java.util.*
 import java.util.concurrent.Callable
 import java.util.concurrent.Executors
 import java.util.concurrent.Future
 
+@Suppress("deprecation", "unused")
 class DevUtils {
+
     companion object{
         //Encrypted SharedPrefs
         fun getEncryptedPrefs(context: Context): SharedPreferences {
@@ -29,6 +32,21 @@ class DevUtils {
                 EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
                 EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
             )
+        }
+
+        //ARGON2 Password
+        fun hashPassword(password: String, salt: String): String{
+            val argon2Kt = Argon2Kt()
+            val hashResult : Argon2KtResult = argon2Kt.hash(Argon2Mode.ARGON2_I, password.toByteArray(), salt.toByteArray())
+            //val verification = argon2Kt.verify(Argon2Mode.ARGON2_I, hashResult.encodedOutputAsString(), password.toByteArray())
+            //Log.i("SIGNUP HASH", "Verification Signup:" + verification.toString())
+            //Log.i("SIGNUP HASH", "new:" + password)
+            return hashResult.encodedOutputAsString()
+        }
+
+        private fun verifyPassword(encodedHash: String, password: String): Boolean {
+            val argon2Kt = Argon2Kt()
+            return argon2Kt.verify(Argon2Mode.ARGON2_I, encodedHash, password.toByteArray())
         }
 
         //Users
@@ -75,11 +93,6 @@ class DevUtils {
             return future.get()
         }
 
-        private fun verifyPassword(encodedHash: String, password: String): Boolean {
-            val argon2Kt = Argon2Kt()
-            return argon2Kt.verify(Argon2Mode.ARGON2_I, encodedHash, password.toByteArray())
-        }
-
         fun updateProfileView(userDao: UserDao, binding: FragmentProfileBinding, email: String){
             Executors.newSingleThreadExecutor().execute {
                 val user = userDao.findByEmail(email)
@@ -97,6 +110,14 @@ class DevUtils {
                 user.name = binding.profileName.text.toString()
                 user.surname = binding.profileSurname.text.toString()
                 user.phone = binding.profilePhone.text.toString().toInt()
+                userDao.updateUser(user)
+            }
+        }
+
+        fun updateUserPasswd(userDao: UserDao, email:String, newPasswd: String){
+            Executors.newSingleThreadExecutor().execute {
+                val user = userDao.findByEmail(email)
+                user.password = newPasswd
                 userDao.updateUser(user)
             }
         }

@@ -44,7 +44,7 @@ class SignupActivity : AppCompatActivity() {
             val password = binding.signupPassword1.text.toString()
             val password2 = binding.signupPassword2.text.toString()
             if(password != password2){
-                message.text = "Introduce the same password"
+                message.text = getString(R.string.introduce_same)
                 return null
             }
             val email = binding.signupEmail.text.toString()
@@ -53,19 +53,11 @@ class SignupActivity : AppCompatActivity() {
             val surname = binding.signupSurname.text.toString()
             val phone = binding.signupPhone.text.toString().toInt()
             val dni = binding.signupDni.text.toString()
-            val hash = hashPassword(password, ((random()*100).toString()))
+            val hash = DevUtils.hashPassword(password, name+((random()*100).toString())+surname)
             return User(0, name, surname, email, phone, dni, hash)
         }catch (e:Exception){
-            message.text = "Wrong Parameters"
+            message.text = getString(R.string.wrong_parameters)
             return null
         }
-    }
-
-    private fun hashPassword(password: String, salt: String): String{
-        val argon2Kt = Argon2Kt()
-        val hashResult : Argon2KtResult = argon2Kt.hash(Argon2Mode.ARGON2_I, password.toByteArray(), salt.toByteArray())
-        val verification = argon2Kt.verify(Argon2Mode.ARGON2_I, hashResult.encodedOutputAsString(), password.toByteArray())
-        Log.i("SIGNUP HASH", "Verification Signup:" + verification.toString())
-        return hashResult.encodedOutputAsString()
     }
 }

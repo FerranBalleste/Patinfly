@@ -11,6 +11,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.content.ContextCompat
 import androidx.core.content.edit
+import androidx.navigation.fragment.findNavController
 import androidx.preference.Preference
 import androidx.preference.PreferenceFragmentCompat
 import androidx.preference.PreferenceManager
@@ -40,6 +41,8 @@ class SettingsFragment : PreferenceFragmentCompat() {
         }
 
         findPreference<Preference>("change_password")?.setOnPreferenceClickListener {
+            val navController = this.findNavController()
+            navController.navigate(SettingsFragmentDirections.actionSettingsFragmentToPasswordFragment())
             true
         }
 

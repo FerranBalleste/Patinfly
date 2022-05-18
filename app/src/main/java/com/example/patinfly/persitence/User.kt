@@ -12,5 +12,5 @@ data class User(
     @ColumnInfo(name = "email") var email: String,
     @ColumnInfo(name = "phone") var phone: Int,
     @ColumnInfo(name = "dni") val dni: String,
-    @ColumnInfo(name = "password") val password: String
+    @ColumnInfo(name = "password") var password: String
 )
