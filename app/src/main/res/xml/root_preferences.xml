@@ -18,10 +18,10 @@
 
     <PreferenceCategory app:title="Account">
         <Preference
+            android:id="@+id/pref_log_out"
             app:key="logout_user"
-            app:title="Log out"
             app:summary="Log out from your account, return to Log in screen"
-            />
+            app:title="Log out" />
         <Preference
             app:key="change_password"
             app:title="Change password"

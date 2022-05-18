@@ -43,8 +43,8 @@ class LoginActivity : AppCompatActivity() {
 
         //Email Preference
         val sharedPref = DevUtils.getEncryptedPrefs(this)
-        val username = sharedPref.getString(getString(R.string.preference_key_login_email), "")
-        binding.loginEmail.setText(username)
+        val storedEmail = sharedPref.getString(getString(R.string.preference_key_login_email), "")
+        binding.loginEmail.setText(storedEmail)
 
         startDatabase()
 

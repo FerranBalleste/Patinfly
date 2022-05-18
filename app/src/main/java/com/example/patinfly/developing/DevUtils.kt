@@ -58,14 +58,14 @@ class DevUtils {
         }
 
         fun verifyUser(userDao: UserDao, email: String, password:String): Boolean{
-            var user: User
+            var user: User?
             val executor = Executors.newSingleThreadExecutor()
             val future: Future<Boolean> = executor.submit(Callable {
                 var verifyPassword = false
                 try {
                     user = userDao.findByEmail(email)
                     user?.let {
-                        verifyPassword = verifyPassword(user.password, password)
+                        verifyPassword = verifyPassword(it.password, password)
                     }
                 } catch (e: SQLiteConstraintException) {
                     Log.i("VERIFY USER", "e.toString()")
@@ -101,6 +101,14 @@ class DevUtils {
             }
         }
 
+        fun deleteUser(userDao: UserDao, email: String, uuid:Long){
+            Executors.newSingleThreadExecutor().execute {
+                val user = userDao.findByEmail(email)
+                if(user.uuid == uuid)
+                userDao.delete(user)
+            }
+        }
+
         fun deleteAllUsers(userDao: UserDao){
             Executors.newSingleThreadExecutor().execute {
                 userDao.deleteAll()
@@ -120,7 +128,7 @@ class DevUtils {
 
         fun getScooters(scooterDao: ScooterDao): Scooters{
             val executor = Executors.newSingleThreadExecutor()
-            var scooters = Scooters()
+            val scooters = Scooters()
             val future: Future<Scooters> = executor.submit(Callable {
                 try {
                     val scooterList = scooterDao.getActive()
@@ -162,7 +170,7 @@ class DevUtils {
 
         fun getRents(rentDao: RentDao, uuid: Long): Rents{
             val executor = Executors.newSingleThreadExecutor()
-            var rents = Rents()
+            val rents = Rents()
             val future: Future<Rents> = executor.submit(Callable {
                 try {
                     val rentList = rentDao.getAllRents(uuid)
