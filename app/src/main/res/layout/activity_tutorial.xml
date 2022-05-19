@@ -94,19 +94,21 @@
 
         <Button
             android:id="@+id/tutorial_leftleft"
+            style="?android:attr/buttonBarButtonStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:enabled="false"
             android:text="@string/leftleft"
             android:textSize="24sp"
-            tools:ignore="TextContrastCheck"
-            style="?android:attr/buttonBarButtonStyle" />
+            tools:ignore="TextContrastCheck" />
 
         <Button
             android:id="@+id/tutorial_left"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:enabled="false"
             android:text="@string/left"
             android:textSize="24sp"
             tools:ignore="TextContrastCheck"
@@ -117,6 +119,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:enabled="false"
             android:text="@string/right"
             android:textSize="24sp"
             tools:ignore="TextContrastCheck"
@@ -127,6 +130,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="5dp"
+            android:enabled="false"
             android:text="@string/rightright"
             android:textSize="24sp"
             tools:ignore="TextContrastCheck"

@@ -1,5 +1,6 @@
 package com.example.patinfly.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -17,30 +18,31 @@ import java.util.*
 class RentFragment : Fragment() {
     private lateinit var binding: FragmentRentBinding
     private lateinit var dateFormat: SimpleDateFormat
+    private var savedRent: Boolean = false
+    private lateinit var rentName: String
+    private lateinit var rentStartTime: String
+    private var rentStartMillis: Long = 0
 
+    @SuppressLint("SimpleDateFormat")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         binding = FragmentRentBinding.inflate(layoutInflater)
         val view = binding.root
 
         dateFormat = SimpleDateFormat("dd.MM.yyyy HH:mm:ss")
 
         val args: RentFragmentArgs by navArgs()
-        val startTime: String
-        val startTimeMillis: Long
+        rentName = args.name
         Calendar.getInstance().let {
-            startTime = dateFormat.format(it.time)
-            startTimeMillis = it.timeInMillis
+            rentStartTime = dateFormat.format(it.time)
+            rentStartMillis = it.timeInMillis
         }
 
         binding.rentButton.setOnClickListener{
-            val database = AppDatabase.getInstance(context!!)
-            val rentDao = database.rentDao()
-            val rent = createRent(args.name, startTime, startTimeMillis)
-            DevUtils.insertRent(rentDao, rent)
-
+            saveRent()
+            savedRent = true
             val navController = this.findNavController()
             navController.popBackStack()
         }
@@ -48,6 +50,19 @@ class RentFragment : Fragment() {
         binding.rentCode.text = Random().nextInt(999999999).toString()
 
         return view
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        if(!savedRent)
+            saveRent()
+    }
+
+    private fun saveRent(){
+        val database = AppDatabase.getInstance(context!!)
+        val rentDao = database.rentDao()
+        val rent = createRent(rentName, rentStartTime, rentStartMillis)
+        DevUtils.insertRent(rentDao, rent)
     }
 
     private fun createRent(name:String, startTime:String, startMillis:Long): Rent {

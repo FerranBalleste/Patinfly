@@ -36,21 +36,26 @@ class TutorialActivity : AppCompatActivity() {
 
             val picture = binding.tutorialPicture
             picture.visibility = View.VISIBLE
+            enableButtons()
             binding.tutorialLeftleft.setOnClickListener{
                 currentPic = 1
                 updatePhoto(picture)
+                enableButtons()
             }
             binding.tutorialLeft.setOnClickListener{
                 if(currentPic > 1) currentPic--
                 updatePhoto(picture)
+                enableButtons()
             }
             binding.tutorialRight.setOnClickListener{
                 if(currentPic < maxPic) currentPic++
                 updatePhoto(picture)
+                enableButtons()
             }
             binding.tutorialRightright.setOnClickListener{
                 currentPic = maxPic
                 updatePhoto(picture)
+                enableButtons()
             }
         }
 
@@ -74,5 +79,25 @@ class TutorialActivity : AppCompatActivity() {
         val editor = prefM.edit()
         editor.putBoolean("tutorial_switch", false)
         editor.apply()
+    }
+
+    private fun enableButtons(){
+        when(currentPic){
+            FIRST_PHOTO -> {
+                binding.tutorialLeftleft.isEnabled = false
+                binding.tutorialLeft.isEnabled = false
+                binding.tutorialRight.isEnabled = true
+                binding.tutorialRightright.isEnabled = true}
+            MAX_PHOTO -> {
+                binding.tutorialLeftleft.isEnabled = true
+                binding.tutorialLeft.isEnabled = true
+                binding.tutorialRight.isEnabled = false
+                binding.tutorialRightright.isEnabled = false}
+            else -> {
+                binding.tutorialLeftleft.isEnabled = true
+                binding.tutorialLeft.isEnabled = true
+                binding.tutorialRight.isEnabled = true
+                binding.tutorialRightright.isEnabled = true}
+        }
     }
 }
