@@ -2,6 +2,7 @@ package com.example.patinfly.model
 
 import android.util.Log
 import com.google.gson.Gson
+import org.json.JSONObject
 
 class ScooterParser {
     companion object{

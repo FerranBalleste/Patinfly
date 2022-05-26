@@ -98,7 +98,7 @@
                     android:layout_height="wrap_content"
                     android:autofillHints="password"
                     android:hint="@string/password"
-                    android:inputType="textPersonName"
+                    android:inputType="textPassword"
                     android:textColorHint="@color/alt_text"
                     android:textSize="24sp" />
 
@@ -109,7 +109,7 @@
                     android:autofillHints="password"
                     android:ems="10"
                     android:hint="@string/repeat_password"
-                    android:inputType="textPersonName"
+                    android:inputType="textPassword"
                     android:textColorHint="@color/alt_text"
                     android:textSize="24sp" />
             </LinearLayout>
