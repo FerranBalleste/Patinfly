@@ -75,11 +75,11 @@ class RentFragment : Fragment() {
             durationString = duration.toString() + " min"
             price = (duration.toDouble()/10 + 2).toString() + "€"
         }
-        val distance = Random().nextInt(50).toString() + "km"
+        //val distance = Random().nextInt(50).toString() + "km"
 
         val sharedPref = DevUtils.getEncryptedPrefs(context!!)
         val uuid = sharedPref.getLong("STORED_LOGIN_UUID", 0)
-        return Rent(name+startTime, name, startTime, endTime, durationString, price, distance, uuid)
+        return Rent(name+startTime, name, startTime, endTime, durationString, price, uuid)
     }
 
 }
