@@ -6,6 +6,7 @@ import com.android.volley.Request
 import com.android.volley.Response
 import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
+import com.example.patinfly.adapters.ScooterRecyclerViewAdapter
 import com.example.patinfly.developing.DevUtils
 import com.example.patinfly.model.RentParser
 import com.example.patinfly.model.ScooterParser
@@ -64,12 +65,12 @@ class HttpRequests {
             "date_stop": "2022-05-15T11:22:30.042640Z"
         },
         * */
+        private const val api_key = "0NoXsbyfOczMKkS1qrZgxBEiwlIFvT87DpYPm6ed"
 
         fun getRents(context: Context, rentDao: RentDao){
             // Instantiate the RequestQueue. The queue is unique for all the requests
-            val queue = Volley.newRequestQueue(context)
+            val queue = RequestQueueSingl.getInstance(context).requestQueue
             val url = "https://patinfly.com/endpoints/rent"
-            val api_key: String = "cXwoo4aCs8VKooJyX2ddGQF1WLOjdwNpGvbazLVM2AWAJxVuTy"
             val genericErrorListener= GenericErrorListener()
 
             //Request with anonymous success json listener and the generic error listener
@@ -87,11 +88,10 @@ class HttpRequests {
             queue.add(jsonObjectRequest)
         }
 
-        fun getScooters(context: Context, scooterDao: ScooterDao){
+        fun getScooters(context: Context, adapter: ScooterRecyclerViewAdapter, scooterDao: ScooterDao){
             // Instantiate the RequestQueue. The queue is unique for all the requests
-            val queue = Volley.newRequestQueue(context)
+            val queue = RequestQueueSingl.getInstance(context).requestQueue
             val url = "https://patinfly.com/endpoints/scooter"
-            val api_key: String = "cXwoo4aCs8VKooJyX2ddGQF1WLOjdwNpGvbazLVM2AWAJxVuTy"
             val genericErrorListener= GenericErrorListener()
 
             //Request with anonymous success json listener and the generic error listener
@@ -99,8 +99,10 @@ class HttpRequests {
                 Request.Method.GET, url,
                 Response.Listener { response ->
                     val scooters = ScooterParser.parseFromJson(response)
-                    Log.d("VOLLEY RESPONSE","Scooters: ${scooters.scooters}")
-                    DevUtils.insertScooters(scooterDao,scooters)
+                    Log.d("VOLLEY RESPONSE COMPANION","Scooters: ${scooters.scooters}")
+                    adapter.setItems(scooters, 1)
+                    adapter.notifyDataSetChanged()
+                    DevUtils.insertScooters(scooterDao, scooters)
                 },
                 genericErrorListener,
                 api_key

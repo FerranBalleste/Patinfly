@@ -20,8 +20,10 @@ import com.example.patinfly.fragments.HomeFragmentDirections
 import com.example.patinfly.model.Scooters
 
 
-class ScooterRecyclerViewAdapter(private val scooters: Scooters, private val navController: NavController) :
+class ScooterRecyclerViewAdapter(private val navController: NavController) :
         RecyclerView.Adapter<ScooterRecyclerViewAdapter.ViewHolder>() {
+
+        private lateinit var scooters: Scooters
 
         class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
             val name: TextView
@@ -77,6 +79,14 @@ class ScooterRecyclerViewAdapter(private val scooters: Scooters, private val nav
                 )
                 navController.navigate(action)
             }
+        }
+
+        fun setItems(scooters: Scooters, origin: Int){
+            this.scooters = scooters
+            if(origin == 0)
+                Log.d("SCOOTER ADAPTER", "Setting Scooters in Recycler from Room database")
+            else
+                Log.d("SCOOTER ADAPTER", "Setting Scooters in Recycler from Room Volley")
         }
 
         // Return the size of your dataset (invoked by the layout manager)
