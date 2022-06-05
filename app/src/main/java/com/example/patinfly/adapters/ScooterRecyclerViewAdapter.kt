@@ -75,7 +75,8 @@ class ScooterRecyclerViewAdapter(private val navController: NavController) :
                     scooter.longitude.toString(),
                     scooter.km_use.toString(),
                     scooter.date_last_maintenance ?: "No date",
-                    scooter.battery_level.toString()
+                    scooter.battery_level.toString(),
+                    scooter.uuid
                 )
                 navController.navigate(action)
             }

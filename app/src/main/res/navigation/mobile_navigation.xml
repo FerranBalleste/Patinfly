@@ -84,6 +84,10 @@
             android:name="battery"
             app:argType="string"
             android:defaultValue="0.0" />
+        <argument
+            android:name="uuid"
+            app:argType="string"
+            android:defaultValue="scooterUuid" />
     </fragment>
     <fragment
         android:id="@+id/passwordFragment"

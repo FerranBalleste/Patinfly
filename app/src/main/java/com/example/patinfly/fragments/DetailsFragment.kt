@@ -7,11 +7,14 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.android.volley.Response
 import com.example.patinfly.R
 import com.example.patinfly.databinding.FragmentDetailsBinding
+import com.example.patinfly.volley.HttpRequests
 
 class DetailsFragment: Fragment() {
     private lateinit var binding: FragmentDetailsBinding
+    private lateinit var scooterUuid: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,6 +41,12 @@ class DetailsFragment: Fragment() {
             6 -> R.drawable.outline_battery_0_bar_24
             else -> R.drawable.outline_battery_0_bar_24
         })
+        scooterUuid = args.uuid
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val navController = this.findNavController()
 
         binding.detailsButtonReturn.setOnClickListener{
@@ -45,11 +54,10 @@ class DetailsFragment: Fragment() {
         }
 
         binding.detailsButtonRent.setOnClickListener{
-            val action = DetailsFragmentDirections.actionDetailsFragmentToRentFragment(args.name)
-            navController.navigate(action)
+            binding.detailsAction.text = "Navigating..."
+            val action = DetailsFragmentDirections.actionDetailsFragmentToRentFragment(scooterUuid)
+            HttpRequests.rentStart(context!!,navController, action, binding.detailsAction, scooterUuid)
+            //navController.navigate(action)
         }
-
-        return view
     }
-
 }
