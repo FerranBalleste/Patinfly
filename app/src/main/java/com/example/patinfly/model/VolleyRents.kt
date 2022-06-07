@@ -18,7 +18,7 @@ class VolleyRents{
             val stop = vRent.date_stop
             if(stop != null){
                 val duration = calculateDuration(vRent.date_start, stop)
-                val price = (duration * 2).toString() + "€"
+                val price = (duration * 2 + 0.5).toString() + "€"
                 val rent = Rent(vRent.uuid, vRent.scooter.name, vRent.date_start, stop, duration.toString() + "min", price, userUuid)
                 result.rents.add(rent)
             }

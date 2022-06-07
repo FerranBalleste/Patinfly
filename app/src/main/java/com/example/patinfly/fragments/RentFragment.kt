@@ -29,7 +29,7 @@ class RentFragment : Fragment() {
 
         binding.rentButton.setOnClickListener{
             val navController = this.findNavController()
-            HttpRequests.rentStop(context!!, StopRentListener(navController), scooterUuid)
+            HttpRequests.rentStop(context!!, StopRentListener(context!!, navController), scooterUuid)
             savedRent = true
         }
 
@@ -41,7 +41,7 @@ class RentFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         if(!savedRent)
-            HttpRequests.rentStop(context!!, StopRentListener(null), scooterUuid)
+            HttpRequests.rentStop(context!!, StopRentListener(context!!,null), scooterUuid)
     }
 
 }

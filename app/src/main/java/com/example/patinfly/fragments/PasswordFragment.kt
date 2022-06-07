@@ -2,19 +2,17 @@ package com.example.patinfly.fragments
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import com.example.patinfly.LoginActivity
 import com.example.patinfly.R
 import com.example.patinfly.databinding.FragmentPasswordBinding
 import com.example.patinfly.developing.DevUtils
 import com.example.patinfly.persitence.AppDatabase
 import com.example.patinfly.persitence.UserDao
-import kotlin.random.Random
-import kotlin.random.nextInt
 
 class PasswordFragment : Fragment() {
     private lateinit var binding: FragmentPasswordBinding
