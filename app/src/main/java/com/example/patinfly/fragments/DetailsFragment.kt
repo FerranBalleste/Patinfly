@@ -1,5 +1,6 @@
 package com.example.patinfly.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -7,10 +8,10 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.android.volley.Response
 import com.example.patinfly.R
 import com.example.patinfly.databinding.FragmentDetailsBinding
 import com.example.patinfly.volley.HttpRequests
+import com.example.patinfly.volley.StartRentListener
 
 class DetailsFragment: Fragment() {
     private lateinit var binding: FragmentDetailsBinding
@@ -19,7 +20,7 @@ class DetailsFragment: Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         //val view = inflater.inflate(R.layout.fragment_details, container, false)
         binding = FragmentDetailsBinding.inflate(layoutInflater)
@@ -45,6 +46,7 @@ class DetailsFragment: Fragment() {
         return view
     }
 
+    @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val navController = this.findNavController()
@@ -56,7 +58,8 @@ class DetailsFragment: Fragment() {
         binding.detailsButtonRent.setOnClickListener{
             binding.detailsAction.text = "Navigating..."
             val action = DetailsFragmentDirections.actionDetailsFragmentToRentFragment(scooterUuid)
-            HttpRequests.rentStart(context!!,navController, action, binding.detailsAction, scooterUuid)
+            val listener = StartRentListener(navController, action, binding.detailsAction)
+            HttpRequests.rentStart(context!!, listener, scooterUuid)
             //navController.navigate(action)
         }
     }

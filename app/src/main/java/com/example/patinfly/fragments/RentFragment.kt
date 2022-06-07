@@ -1,6 +1,5 @@
 package com.example.patinfly.fragments
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.patinfly.databinding.FragmentRentBinding
-import com.example.patinfly.developing.DevUtils
-import com.example.patinfly.persitence.AppDatabase
-import com.example.patinfly.persitence.Rent
 import com.example.patinfly.volley.HttpRequests
-import java.text.SimpleDateFormat
+import com.example.patinfly.volley.StopRentListener
 import java.util.*
 
 class RentFragment : Fragment() {
@@ -33,7 +29,7 @@ class RentFragment : Fragment() {
 
         binding.rentButton.setOnClickListener{
             val navController = this.findNavController()
-            HttpRequests.rentStop(context!!, navController, scooterUuid)
+            HttpRequests.rentStop(context!!, StopRentListener(navController), scooterUuid)
             savedRent = true
         }
 
@@ -45,7 +41,7 @@ class RentFragment : Fragment() {
     override fun onDestroy() {
         super.onDestroy()
         if(!savedRent)
-            HttpRequests.rentStop(context!!, null, scooterUuid)
+            HttpRequests.rentStop(context!!, StopRentListener(null), scooterUuid)
     }
 
 }

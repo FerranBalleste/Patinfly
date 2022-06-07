@@ -1,7 +1,7 @@
 package com.example.patinfly.fragments
 
+import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,14 +10,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.patinfly.R
 import com.example.patinfly.adapters.HistoryRecyclerViewAdapter
-import com.example.patinfly.adapters.ScooterRecyclerViewAdapter
-import com.example.patinfly.base.AppConfig
 import com.example.patinfly.developing.DevUtils
-import com.example.patinfly.model.Rents
 import com.example.patinfly.persitence.AppDatabase
-import com.example.patinfly.repositories.HistoryRepository
+import com.example.patinfly.volley.GetRentsListener
 import com.example.patinfly.volley.HttpRequests
-import java.lang.Exception
 
 class HistoryFragment : Fragment() {
     private lateinit var historyRecyclerView: RecyclerView
@@ -30,6 +26,7 @@ class HistoryFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_history, container, false)
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -44,7 +41,7 @@ class HistoryFragment : Fragment() {
         //Afterwards it stores scooters in Room Database
         val sharedPref = DevUtils.getEncryptedPrefs(context!!)
         val userUuid = sharedPref.getLong("STORED_LOGIN_UUID", 0)
-        HttpRequests.getRents(context!!,adapter,rentDao, userUuid)
+        HttpRequests.getRents(context!!, GetRentsListener(adapter,rentDao, userUuid))
 
         // RecyclerView
         historyRecyclerView = view.findViewById(R.id.history_recycler_view)
@@ -54,5 +51,6 @@ class HistoryFragment : Fragment() {
 
         val rents = DevUtils.getRents(rentDao, userUuid)
         adapter.setItems(rents,0)
+        adapter.notifyDataSetChanged()
     }
 }
