@@ -100,5 +100,8 @@
     <string name="wrong_parameters">Wrong Parameters</string>
     <string name="introduce_same">Introduce the same password</string>
     <string name="loading_rent_status">Loading rent status...</string>
+    <string name="rent_was_started_succesfully">Rent was started successfully.</string>
+    <string name="click_the_button_when_you_are_done">Click the button when you are done.</string>
+    <string name="stop_rent">Stop Rent</string>
 
 </resources>

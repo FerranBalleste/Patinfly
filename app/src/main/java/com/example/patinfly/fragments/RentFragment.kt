@@ -33,8 +33,6 @@ class RentFragment : Fragment() {
             savedRent = true
         }
 
-        binding.rentCode.text = Random().nextInt(999999999).toString()
-
         return view
     }
 
