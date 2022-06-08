@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.35">
+        app:layout_constraintVertical_bias="0.3">
 
         <TextView
             android:id="@+id/details_text1"
@@ -105,6 +105,16 @@
             app:layout_constraintTop_toBottomOf="@+id/details_text5"
             tools:text="@string/_05_08_2021" />
 
+        <TextView
+            android:id="@+id/details_rentstatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="35dp"
+            android:text="@string/loading_rent_status"
+            android:textSize="20sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/details_date" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
@@ -142,14 +152,5 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/details_image" />
-
-    <TextView
-        android:id="@+id/details_action"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/details_button_return"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/details_image" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

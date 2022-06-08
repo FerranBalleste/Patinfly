@@ -1,13 +1,9 @@
 package com.example.patinfly.volley
 
 import android.content.Context
-import android.util.Log
-import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.NavController
-import androidx.navigation.NavDirections
 import com.android.volley.Response
-import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonParser
 
 class StopRentListener(val context: Context, val navController: NavController?) : Response.Listener<String> {

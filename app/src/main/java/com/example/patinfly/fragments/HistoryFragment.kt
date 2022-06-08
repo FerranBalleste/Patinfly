@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.patinfly.R
 import com.example.patinfly.adapters.HistoryRecyclerViewAdapter
+import com.example.patinfly.databinding.FragmentHistoryBinding
 import com.example.patinfly.developing.DevUtils
 import com.example.patinfly.persitence.AppDatabase
 import com.example.patinfly.volley.GetRentsListener
@@ -17,19 +17,22 @@ import com.example.patinfly.volley.HttpRequests
 
 class HistoryFragment : Fragment() {
     private lateinit var historyRecyclerView: RecyclerView
+    private lateinit var binding: FragmentHistoryBinding
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_history, container, false)
+        binding = FragmentHistoryBinding.inflate(layoutInflater)
+        return binding.root
     }
 
     @SuppressLint("NotifyDataSetChanged")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.historyRefresh.isRefreshing = true
         //Initialize Adapter
         val adapter = HistoryRecyclerViewAdapter()
 
@@ -41,10 +44,11 @@ class HistoryFragment : Fragment() {
         //Afterwards it stores scooters in Room Database
         val sharedPref = DevUtils.getEncryptedPrefs(context!!)
         val userUuid = sharedPref.getLong("STORED_LOGIN_UUID", 0)
-        HttpRequests.getRents(context!!, GetRentsListener(adapter,rentDao, userUuid))
+        val successListener = GetRentsListener(adapter, rentDao, userUuid, null)
+        HttpRequests.getRents(context!!, successListener)
 
         // RecyclerView
-        historyRecyclerView = view.findViewById(R.id.history_recycler_view)
+        historyRecyclerView = binding.historyRecyclerView
         historyRecyclerView.setHasFixedSize(true)                                                   // Increase performance when the size is static
         historyRecyclerView.layoutManager = LinearLayoutManager(activity?.applicationContext)       // Our RecyclerView is using the linear layout manager
         historyRecyclerView.adapter = adapter                                                       // Set adapter
@@ -52,5 +56,12 @@ class HistoryFragment : Fragment() {
         val rents = DevUtils.getRents(rentDao, userUuid)
         adapter.setItems(rents,0)
         adapter.notifyDataSetChanged()
+        binding.historyRefresh.isRefreshing = false
+
+        binding.historyRefresh.setOnRefreshListener {
+            binding.historyRefresh.isRefreshing = true
+            val refreshListener = GetRentsListener(adapter, rentDao, userUuid, binding.historyRefresh)
+            HttpRequests.getRents(context!!, refreshListener)
+        }
     }
 }

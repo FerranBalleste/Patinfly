@@ -1,20 +1,9 @@
 package com.example.patinfly.volley
 
 import android.content.Context
-import android.util.Log
 import com.android.volley.Request
 import com.android.volley.RequestQueue
-import com.android.volley.Response
-import com.android.volley.toolbox.StringRequest
 import com.android.volley.toolbox.Volley
-import com.example.patinfly.developing.DevUtils
-import com.example.patinfly.model.RentParser
-import com.example.patinfly.model.ScooterParser
-import com.example.patinfly.model.Scooters
-import com.example.patinfly.persitence.RentDao
-import com.example.patinfly.persitence.ScooterDao
-import com.example.patinfly.repositories.ScooterRepository
-
 
 class RequestQueueSingl constructor(context: Context){
 
@@ -29,8 +18,7 @@ class RequestQueueSingl constructor(context: Context){
             }
     }
 
-    //lazy: función que durante la primera invocación ejecuta el lambda que se le haya pasado
-    // y en posteriores invocaciones retornará el valor computado inicialmente.
+    //lazy: only calculates the first time
     val requestQueue: RequestQueue by lazy {
         Volley.newRequestQueue(context.applicationContext)
     }

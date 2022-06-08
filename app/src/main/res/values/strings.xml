@@ -99,5 +99,6 @@
     <string name="password_changed_correctly">Password changed correctly.</string>
     <string name="wrong_parameters">Wrong Parameters</string>
     <string name="introduce_same">Introduce the same password</string>
+    <string name="loading_rent_status">Loading rent status...</string>
 
 </resources>

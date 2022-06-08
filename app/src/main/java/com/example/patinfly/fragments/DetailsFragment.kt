@@ -10,6 +10,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.patinfly.R
 import com.example.patinfly.databinding.FragmentDetailsBinding
+import com.example.patinfly.volley.GetScooterListener
 import com.example.patinfly.volley.HttpRequests
 import com.example.patinfly.volley.StartRentListener
 
@@ -49,6 +50,10 @@ class DetailsFragment: Fragment() {
     @SuppressLint("SetTextI18n")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val successListener =  GetScooterListener(binding)
+        HttpRequests.getScooterState(context!!, successListener, scooterUuid)
+
         val navController = this.findNavController()
 
         binding.detailsButtonReturn.setOnClickListener{
@@ -56,9 +61,8 @@ class DetailsFragment: Fragment() {
         }
 
         binding.detailsButtonRent.setOnClickListener{
-            binding.detailsAction.text = "Navigating..."
             val action = DetailsFragmentDirections.actionDetailsFragmentToRentFragment(scooterUuid)
-            val listener = StartRentListener(navController, action, binding.detailsAction)
+            val listener = StartRentListener(navController, action, binding.detailsRentstatus)
             HttpRequests.rentStart(context!!, listener, scooterUuid)
             //navController.navigate(action)
         }

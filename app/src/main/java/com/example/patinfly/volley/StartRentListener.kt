@@ -17,9 +17,9 @@ class StartRentListener(
     override fun onResponse(response: String?) {
         when (getCode(response!!)) {
             200 -> navController.navigate(action)
-            404 -> textView.text = "Scooter does not exist"
-            405 -> textView.text = "Error, Scooter already on rent!!!"
-            409 -> textView.text = "Scooter not available, wrong user"
+            404 -> textView.text = "Scooter does not exist."
+            405 -> textView.text = "Scooter is already on rent!!!"
+            409 -> textView.text = "Scooter not available, wrong user."
         }
     }
 

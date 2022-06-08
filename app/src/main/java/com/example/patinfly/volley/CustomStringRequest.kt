@@ -2,9 +2,7 @@ package com.example.patinfly.volley
 
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
-import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.StringRequest
-import org.json.JSONObject
 
 class CustomStringRequest(
     method:Int, url: String,

@@ -3,20 +3,8 @@ package com.example.patinfly.volley
 import android.annotation.SuppressLint
 import android.content.Context
 import android.util.Log
-import android.widget.TextView
-import androidx.navigation.NavController
-import androidx.navigation.NavDirections
 import com.android.volley.Request
-import com.example.patinfly.R
-import com.example.patinfly.adapters.HistoryRecyclerViewAdapter
-import com.example.patinfly.adapters.ScooterRecyclerViewAdapter
-import com.example.patinfly.developing.DevUtils
-import com.example.patinfly.model.ScooterParser
-import com.example.patinfly.model.VolleyRentParser
-import com.example.patinfly.persitence.RentDao
-import com.example.patinfly.persitence.ScooterDao
 import com.example.patinfly.repositories.AssetsProvider
-import com.google.gson.JsonParser
 
 @SuppressLint("NotifyDataSetChanged")
 class HttpRequests(val context: Context) {
@@ -30,40 +18,50 @@ class HttpRequests(val context: Context) {
             val api_key  = getApiKey(context)
             val errorListener = GenericErrorListener(context)
             Log.d("VOLLEY START RENT", url)
-            val jsonObjectRequest = CustomStringRequest(
+            val stringRequest = CustomStringRequest(
                 Request.Method.GET, url, successListener, errorListener, api_key
             )
-            RequestQueueSingl.getInstance(context).addToRequestQueue(jsonObjectRequest)
+            RequestQueueSingl.getInstance(context).addToRequestQueue(stringRequest)
         }
 
         fun rentStop(context: Context, successListener: StopRentListener, scooterUuid: String = testScooter) {
             val url = "https://patinfly.com/endpoints/rent/stop/$scooterUuid"
             val api_key  = getApiKey(context)
             val errorListener = GenericErrorListener(context)
-            val jsonObjectRequest = CustomStringRequest(
+            val stringRequest = CustomStringRequest(
                 Request.Method.GET, url, successListener, errorListener, api_key
             )
-            RequestQueueSingl.getInstance(context).addToRequestQueue(jsonObjectRequest)
+            RequestQueueSingl.getInstance(context).addToRequestQueue(stringRequest)
         }
 
         fun getRents(context: Context, successListener: GetRentsListener) {
             val url = "https://patinfly.com/endpoints/rent"
             val api_key  = getApiKey(context)
             val errorListener = GenericErrorListener(context)
-            val jsonObjectRequest = CustomStringRequest(
+            val stringRequest = CustomStringRequest(
                 Request.Method.GET, url, successListener, errorListener, api_key
             )
-            RequestQueueSingl.getInstance(context).addToRequestQueue(jsonObjectRequest)
+            RequestQueueSingl.getInstance(context).addToRequestQueue(stringRequest)
         }
 
         fun getScooters(context: Context, successListener: GetScootersListener) {
             val url = "https://patinfly.com/endpoints/scooter"
             val api_key  = getApiKey(context)
             val errorListener = GenericErrorListener(context)
-            val jsonObjectRequest = CustomStringRequest(
+            val stringRequest = CustomStringRequest(
                 Request.Method.GET, url, successListener, errorListener, api_key
             )
-            RequestQueueSingl.getInstance(context).addToRequestQueue(jsonObjectRequest)
+            RequestQueueSingl.getInstance(context).addToRequestQueue(stringRequest)
+        }
+
+        fun getScooterState(context: Context, successListener: GetScooterListener, scooterUuid: String = testScooter){
+            val url = "https://patinfly.com/endpoints/scooter/$scooterUuid"
+            val api_key  = getApiKey(context)
+            val errorListener = GenericErrorListener(context)
+            val stringRequest = CustomStringRequest(
+                Request.Method.GET, url, successListener, errorListener, api_key
+            )
+            RequestQueueSingl.getInstance(context).addToRequestQueue(stringRequest)
         }
 
         private fun getApiKey(context: Context): String{

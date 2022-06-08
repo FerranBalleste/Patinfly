@@ -1,6 +1,7 @@
 package com.example.patinfly.model
 
 import android.util.Log
+import com.example.patinfly.persitence.Scooter
 import com.google.gson.Gson
 import org.json.JSONObject
 
@@ -13,6 +14,11 @@ class ScooterParser {
                 scooters = gson.fromJson<Scooters>(json, Scooters::class.java)
             }
             return scooters
+        }
+
+        fun parseFromJsonSingle( json: String): Scooter? {
+            val scooters = parseFromJson(json)
+            return scooters.scooters.first
         }
     }
 }
